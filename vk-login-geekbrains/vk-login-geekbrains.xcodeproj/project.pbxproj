@@ -13,6 +13,7 @@
 		C76BCB172433327E00492952 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C76BCB152433327E00492952 /* Main.storyboard */; };
 		C76BCB192433327F00492952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C76BCB182433327F00492952 /* Assets.xcassets */; };
 		C76BCB1C2433327F00492952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C76BCB1A2433327F00492952 /* LaunchScreen.storyboard */; };
+		C76BCB292433546600492952 /* AllFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76BCB282433546600492952 /* AllFriendsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C76BCB182433327F00492952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C76BCB1B2433327F00492952 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C76BCB1D2433327F00492952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C76BCB282433546600492952 /* AllFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,22 @@
 			children = (
 				C76BCB0F2433327E00492952 /* AppDelegate.swift */,
 				C76BCB112433327E00492952 /* SceneDelegate.swift */,
-				C76BCB132433327E00492952 /* ViewController.swift */,
 				C76BCB152433327E00492952 /* Main.storyboard */,
+				C76BCB232433538D00492952 /* Controllers */,
 				C76BCB182433327F00492952 /* Assets.xcassets */,
 				C76BCB1A2433327F00492952 /* LaunchScreen.storyboard */,
 				C76BCB1D2433327F00492952 /* Info.plist */,
 			);
 			path = "vk-login-geekbrains";
+			sourceTree = "<group>";
+		};
+		C76BCB232433538D00492952 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C76BCB132433327E00492952 /* ViewController.swift */,
+				C76BCB282433546600492952 /* AllFriendsTableViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C76BCB142433327E00492952 /* ViewController.swift in Sources */,
+				C76BCB292433546600492952 /* AllFriendsTableViewController.swift in Sources */,
 				C76BCB102433327E00492952 /* AppDelegate.swift in Sources */,
 				C76BCB122433327E00492952 /* SceneDelegate.swift in Sources */,
 			);
