@@ -14,6 +14,10 @@
 		C76BCB192433327F00492952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C76BCB182433327F00492952 /* Assets.xcassets */; };
 		C76BCB1C2433327F00492952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C76BCB1A2433327F00492952 /* LaunchScreen.storyboard */; };
 		C76BCB292433546600492952 /* AllFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76BCB282433546600492952 /* AllFriendsTableViewController.swift */; };
+		C79789F624353D01006525F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79789F524353D01006525F8 /* User.swift */; };
+		C79789F824353D15006525F8 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79789F724353D15006525F8 /* Group.swift */; };
+		C79789FB24354394006525F8 /* OneFriendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79789FA24354394006525F8 /* OneFriendCollectionViewController.swift */; };
+		C79789FD243543EB006525F8 /* OneFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79789FC243543EB006525F8 /* OneFriendCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		C76BCB1B2433327F00492952 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C76BCB1D2433327F00492952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C76BCB282433546600492952 /* AllFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFriendsTableViewController.swift; sourceTree = "<group>"; };
+		C79789F524353D01006525F8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C79789F724353D15006525F8 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		C79789FA24354394006525F8 /* OneFriendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneFriendCollectionViewController.swift; sourceTree = "<group>"; };
+		C79789FC243543EB006525F8 /* OneFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneFriendCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,8 @@
 				C76BCB0F2433327E00492952 /* AppDelegate.swift */,
 				C76BCB112433327E00492952 /* SceneDelegate.swift */,
 				C76BCB152433327E00492952 /* Main.storyboard */,
+				C79789F92435432A006525F8 /* Cells */,
+				C79789F424353CEF006525F8 /* Model */,
 				C76BCB232433538D00492952 /* Controllers */,
 				C76BCB182433327F00492952 /* Assets.xcassets */,
 				C76BCB1A2433327F00492952 /* LaunchScreen.storyboard */,
@@ -74,8 +84,26 @@
 			children = (
 				C76BCB132433327E00492952 /* ViewController.swift */,
 				C76BCB282433546600492952 /* AllFriendsTableViewController.swift */,
+				C79789FA24354394006525F8 /* OneFriendCollectionViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C79789F424353CEF006525F8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C79789F524353D01006525F8 /* User.swift */,
+				C79789F724353D15006525F8 /* Group.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C79789F92435432A006525F8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C79789FC243543EB006525F8 /* OneFriendCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +180,11 @@
 				C76BCB142433327E00492952 /* ViewController.swift in Sources */,
 				C76BCB292433546600492952 /* AllFriendsTableViewController.swift in Sources */,
 				C76BCB102433327E00492952 /* AppDelegate.swift in Sources */,
+				C79789F824353D15006525F8 /* Group.swift in Sources */,
+				C79789F624353D01006525F8 /* User.swift in Sources */,
 				C76BCB122433327E00492952 /* SceneDelegate.swift in Sources */,
+				C79789FB24354394006525F8 /* OneFriendCollectionViewController.swift in Sources */,
+				C79789FD243543EB006525F8 /* OneFriendCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
