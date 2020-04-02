@@ -231,7 +231,7 @@
             </objects>
             <point key="canvasLocation" x="3860.8695652173915" y="-172.09821428571428"/>
         </scene>
-        <!--Groups-->
+        <!--My Groups-->
         <scene sceneID="3Ze-AT-ngu">
             <objects>
                 <tableViewController storyboardIdentifier="FavouriteGroupsTableController" modalPresentationStyle="fullScreen" id="0YN-Gk-ZZC" customClass="FavouriteGroupsTableController" customModule="vk_login_geekbrains" customModuleProvider="target" sceneMemberID="viewController">
@@ -281,7 +281,7 @@
                             <outlet property="delegate" destination="0YN-Gk-ZZC" id="gIe-4e-R7q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Groups" id="xNv-aC-hHu">
+                    <navigationItem key="navigationItem" title="My Groups" id="xNv-aC-hHu">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PVY-Zd-SZF">
                             <connections>
                                 <segue destination="0d8-aW-qNU" kind="show" id="EKf-MZ-3GM"/>
@@ -349,13 +349,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgq-mT-WtA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="edd-q1-gcC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3792.753623188406" y="509.59821428571428"/>
+            <point key="canvasLocation" x="3861" y="510"/>
         </scene>
-        <!--Groups-->
+        <!--My Groups-->
         <scene sceneID="UXA-CC-zs2">
             <objects>
                 <navigationController id="MVF-XW-DC3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Groups" id="opR-K4-tMM"/>
+                    <tabBarItem key="tabBarItem" title="My Groups" id="opR-K4-tMM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RMy-uM-m1D">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
