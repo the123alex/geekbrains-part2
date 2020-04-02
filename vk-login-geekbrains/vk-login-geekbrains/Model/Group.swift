@@ -8,8 +8,14 @@
 
 import UIKit
 
-struct Group {
-    let tittle: String
+class Group {
+    var title: String
     let countSubscribers: UInt
-    let image: UIImage
+    var image: UIImage
+
+    init(title: String, countSubscribers: UInt, image: UIImage) {
+        self.title = title
+        self.countSubscribers = countSubscribers
+        self.image = image
+    }
 }

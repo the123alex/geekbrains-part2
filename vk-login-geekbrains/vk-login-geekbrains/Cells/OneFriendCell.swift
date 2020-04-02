@@ -10,7 +10,6 @@ import UIKit
 
 class OneFriendCell: UICollectionViewCell {
     @IBOutlet weak var friendImageCell: UIImageView!
-    
     @IBOutlet weak var friendNameCell: UILabel!
     @IBOutlet weak var friendAgeCell: UILabel!
 }

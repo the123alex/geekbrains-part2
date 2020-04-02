@@ -8,14 +8,15 @@
 
 import UIKit
 
-var someFriends = [
-    User(name: "Boris", age: 22, image: UIImage(named: "default")!),
-    User(name: "Anna", age: 44, image: UIImage(named: "default")!),
-    User(name: "Ivan", age: 32, image: UIImage(named: "default")!)
-    ]
+
 
 
 class AllFriendsTableViewController: UITableViewController {
+    var someFriends = [
+        User(name: "Boris", age: 22, image: UIImage(named: "default")!),
+        User(name: "Anna", age: 44, image: UIImage(named: "default")!),
+        User(name: "Ivan", age: 32, image: UIImage(named: "default")!)
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
