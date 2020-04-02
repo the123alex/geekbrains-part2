@@ -21,6 +21,7 @@
 		C7978A032435E9F5006525F8 /* AllGroupsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7978A022435E9F5006525F8 /* AllGroupsTableController.swift */; };
 		C7978A052435EA65006525F8 /* FavouriteGroupsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7978A042435EA65006525F8 /* FavouriteGroupsTableController.swift */; };
 		C7978A072435EC82006525F8 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7978A062435EC82006525F8 /* GroupCell.swift */; };
+		C79FD5EF2436086B003D5204 /* FriendsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79FD5EE2436086B003D5204 /* FriendsTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		C7978A022435E9F5006525F8 /* AllGroupsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableController.swift; sourceTree = "<group>"; };
 		C7978A042435EA65006525F8 /* FavouriteGroupsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteGroupsTableController.swift; sourceTree = "<group>"; };
 		C7978A062435EC82006525F8 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		C79FD5EE2436086B003D5204 /* FriendsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				C79789FC243543EB006525F8 /* OneFriendCell.swift */,
+				C79FD5EE2436086B003D5204 /* FriendsTableCell.swift */,
 				C7978A062435EC82006525F8 /* GroupCell.swift */,
 			);
 			path = Cells;
@@ -202,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C79FD5EF2436086B003D5204 /* FriendsTableCell.swift in Sources */,
 				C76BCB142433327E00492952 /* ViewController.swift in Sources */,
 				C76BCB292433546600492952 /* AllFriendsTableViewController.swift in Sources */,
 				C7978A032435E9F5006525F8 /* AllGroupsTableController.swift in Sources */,
