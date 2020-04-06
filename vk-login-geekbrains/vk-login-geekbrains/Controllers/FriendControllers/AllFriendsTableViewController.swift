@@ -9,6 +9,7 @@
 import UIKit
 
 class AllFriendsTableViewController: UITableViewController {
+
     var someFriends = [
         User(name: "Boris", age: 22, image: UIImage(named: "default")!),
         User(name: "Anna", age: 44, image: UIImage(named: "default")!),
@@ -35,7 +36,6 @@ class AllFriendsTableViewController: UITableViewController {
         content.likes.updateValue(10, forKey: "max")
         content.likes.updateValue(100, forKey: "max2")
         content.likes.updateValue(50, forKey: "max3")
-
         makeFriendsList()
         
     }
@@ -88,7 +88,6 @@ class AllFriendsTableViewController: UITableViewController {
             }
 
             let destinationViewController = segue.destination as? OneFriendCollectionViewController
-            
             destinationViewController?.friendContent = content
             destinationViewController?.friendName = friend.name
 
