@@ -9,9 +9,11 @@
 import Foundation
 
 class Content {
-    let titles: [String]
+    var images: [String: [String]]
+    var likes: [String: Int]
 
-    init(titles: [String]) {
-        self.titles = titles
+    init(images: [String: [String]], likes: [String: Int]) {
+        self.images = images
+        self.likes = likes
     }
 }

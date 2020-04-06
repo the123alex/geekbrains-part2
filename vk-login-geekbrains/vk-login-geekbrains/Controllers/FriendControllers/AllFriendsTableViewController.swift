@@ -24,15 +24,20 @@ class AllFriendsTableViewController: UITableViewController {
         User(name: "Mary", age: 32, image: UIImage(named: "default")!)
     ]
 
-    var content = Content(titles: ["max", "max2", "max3"])
+    var content: Content = Content(images: [:], likes: [:])
 
     var friendsNames: [String] = []
     var dictFriends: [String: [User]] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        content.images.updateValue(["max", "max2", "max3" ], forKey: "Max")
+        content.likes.updateValue(10, forKey: "max")
+        content.likes.updateValue(100, forKey: "max2")
+        content.likes.updateValue(50, forKey: "max3")
 
         makeFriendsList()
+        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -85,6 +90,8 @@ class AllFriendsTableViewController: UITableViewController {
             let destinationViewController = segue.destination as? OneFriendCollectionViewController
             
             destinationViewController?.friendContent = content
+            destinationViewController?.friendName = friend.name
+
             if UIImage(named: friend.name) != nil {
                 destinationViewController?.friendImage = UIImage(named: friend.name)
             } else {
