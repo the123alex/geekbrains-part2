@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7679DD3243B2B7A00138187 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7679DD2243B2B7A00138187 /* Content.swift */; };
 		C76BCB102433327E00492952 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76BCB0F2433327E00492952 /* AppDelegate.swift */; };
 		C76BCB122433327E00492952 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76BCB112433327E00492952 /* SceneDelegate.swift */; };
 		C76BCB142433327E00492952 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76BCB132433327E00492952 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C7679DD2243B2B7A00138187 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		C76BCB0C2433327E00492952 /* vk-login-geekbrains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "vk-login-geekbrains.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C76BCB0F2433327E00492952 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C76BCB112433327E00492952 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C7679DD1243B2B6300138187 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				C7679DD2243B2B7A00138187 /* Content.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
 		C76BCB032433327E00492952 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +91,7 @@
 				C76BCB0F2433327E00492952 /* AppDelegate.swift */,
 				C76BCB112433327E00492952 /* SceneDelegate.swift */,
 				C76BCB152433327E00492952 /* Main.storyboard */,
+				C7679DD1243B2B6300138187 /* Content */,
 				C7BC8085243B15C900D65BA3 /* Views */,
 				C79789F424353CEF006525F8 /* Model */,
 				C79789F92435432A006525F8 /* Cells */,
@@ -227,6 +238,7 @@
 				C76BCB102433327E00492952 /* AppDelegate.swift in Sources */,
 				C7BC8089243B182200D65BA3 /* ShadowView.swift in Sources */,
 				C7978A072435EC82006525F8 /* GroupCell.swift in Sources */,
+				C7679DD3243B2B7A00138187 /* Content.swift in Sources */,
 				C79789F824353D15006525F8 /* Group.swift in Sources */,
 				C79789F624353D01006525F8 /* User.swift in Sources */,
 				C7978A052435EA65006525F8 /* FavouriteGroupsTableController.swift in Sources */,

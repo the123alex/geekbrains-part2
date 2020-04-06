@@ -11,9 +11,8 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class OneFriendCollectionViewController: UICollectionViewController {
-    var friendName: String?
     var friendImage: UIImage?
-    var friendAge: String?
+    var friendContent: Content?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +24,7 @@ class OneFriendCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return friendContent?.titles.count ?? 1
     }
 
 
@@ -40,7 +39,7 @@ class OneFriendCollectionViewController: UICollectionViewController {
         preconditionFailure("Fail")
     }
 
-        cell.friendImageCell.image = friendImage
+        cell.friendImageCell.image = UIImage(named: (friendContent?.titles[indexPath.section])!)
         // Configure the cell
     
         return cell

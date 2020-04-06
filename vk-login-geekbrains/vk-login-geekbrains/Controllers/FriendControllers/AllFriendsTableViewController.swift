@@ -24,6 +24,8 @@ class AllFriendsTableViewController: UITableViewController {
         User(name: "Mary", age: 32, image: UIImage(named: "default")!)
     ]
 
+    var content = Content(titles: ["max", "max2", "max3"])
+
     var friendsNames: [String] = []
     var dictFriends: [String: [User]] = [:]
 
@@ -81,10 +83,8 @@ class AllFriendsTableViewController: UITableViewController {
             }
 
             let destinationViewController = segue.destination as? OneFriendCollectionViewController
-
-            destinationViewController?.friendName = friend.name
-            destinationViewController?.friendAge = "Age - " + String(friend.age)
-
+            
+            destinationViewController?.friendContent = content
             if UIImage(named: friend.name) != nil {
                 destinationViewController?.friendImage = UIImage(named: friend.name)
             } else {
