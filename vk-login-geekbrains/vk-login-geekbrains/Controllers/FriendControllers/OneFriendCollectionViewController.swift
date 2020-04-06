@@ -40,9 +40,7 @@ class OneFriendCollectionViewController: UICollectionViewController {
         preconditionFailure("Fail")
     }
 
-        cell.friendNameCell.text = friendName
         cell.friendImageCell.image = friendImage
-        cell.friendAgeCell.text = friendAge
         // Configure the cell
     
         return cell
