@@ -131,7 +131,7 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="NLd-Q5-x9w" secondAttribute="bottom" id="CO3-gw-R3K"/>
                                                         <constraint firstItem="NLd-Q5-x9w" firstAttribute="top" secondItem="Hvr-2C-yOl" secondAttribute="top" id="VTr-8G-OMi"/>
@@ -140,7 +140,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="55" id="7KC-qy-YX0"/>
                                                 <constraint firstAttribute="trailing" secondItem="Hvr-2C-yOl" secondAttribute="trailing" constant="5" id="JA4-iH-ZIu"/>
@@ -167,7 +167,7 @@
                                 <connections>
                                     <outlet property="friendImageCell" destination="NLd-Q5-x9w" id="1Ug-c8-APo"/>
                                     <outlet property="friendNameCell" destination="1jl-Yo-1XY" id="KaJ-Hj-upk"/>
-                                    <outlet property="viewForShadow" destination="Hvr-2C-yOl" id="q5M-Kt-miY"/>
+                                    <outlet property="viewForShadow" destination="Hvr-2C-yOl" id="PEF-px-Xqi"/>
                                     <segue destination="HXp-Re-bFB" kind="show" identifier="Friend segue" id="9Qc-a5-cpI"/>
                                 </connections>
                             </tableViewCell>

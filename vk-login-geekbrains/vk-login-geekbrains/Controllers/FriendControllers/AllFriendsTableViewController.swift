@@ -30,7 +30,7 @@ class AllFriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        makeFriensList()
+        makeFriendsList()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,8 +63,8 @@ class AllFriendsTableViewController: UITableViewController {
         cell.friendImageCell?.image = friends.image
         cell.friendImageCell?.asCircle()
         cell.viewForShadow?.asCircle()
+        cell.viewForShadow?.makeShadow()
 
-        //cell.friendImage?.makeShadow()
         if UIImage(named: friends.name) != nil {
             cell.friendImageCell.image = UIImage(named: friends.name)
         }
@@ -93,7 +93,7 @@ class AllFriendsTableViewController: UITableViewController {
         }
     }
 
-    private func makeFriensList() {
+    private func makeFriendsList() {
 
         for element in someFriends {
             friendsNames.append(String(element.name.first!))
