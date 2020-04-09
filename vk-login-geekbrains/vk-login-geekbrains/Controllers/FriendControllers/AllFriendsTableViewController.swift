@@ -68,7 +68,7 @@ class AllFriendsTableViewController: UITableViewController {
         cell.friendNameCell?.text = friends.name
         cell.friendImageCell?.image = friends.image
         cell.friendImageCell?.asCircle()
-        cell.viewForShadow?.asCircle()
+      //  cell.viewForShadow?.asCircle()
         cell.viewForShadow?.makeShadow()
 
         if UIImage(named: friends.name) != nil {

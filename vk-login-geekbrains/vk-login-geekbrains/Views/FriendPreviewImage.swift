@@ -9,8 +9,15 @@
 import UIKit
 
 class FriendPreviewImage: UIImageView {
+
+    @IBInspectable var radius: CGFloat = 10 {
+        didSet {
+            self.asCircle()
+        }
+    }
+
     func asCircle() {
-        self.layer.cornerRadius = self.frame.width / 2
+        self.layer.cornerRadius = radius
     }
 }
 
