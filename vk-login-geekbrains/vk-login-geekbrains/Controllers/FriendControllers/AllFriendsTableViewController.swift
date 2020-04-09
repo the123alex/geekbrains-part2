@@ -33,6 +33,8 @@ class AllFriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         content.images.updateValue(["max", "max2", "max3" ], forKey: "Max")
+        content.images.updateValue(["boris1", "boris2"], forKey: "Boris")
+        
         content.likes.updateValue(10, forKey: "max")
         content.likes.updateValue(100, forKey: "max2")
         content.likes.updateValue(50, forKey: "max3")
