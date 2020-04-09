@@ -13,7 +13,7 @@ class LikeControl: UIControl {
 
     var likesCount = 0
     var isLiked = false
-    var randomLikes = Int.random(in: 1...10)
+    let randomLikes = Int.random(in: 1...10)
 
     override func layoutSubviews() {
         setupSubview()
@@ -25,7 +25,7 @@ class LikeControl: UIControl {
         iconButton.setTitle("\(likesCount) \u{2665}", for: .normal)
         iconButton.setTitleColor(.black, for: .normal)
         iconButton.titleLabel?.font = .systemFont(ofSize: 20)
-        
+
         iconButton.addTarget(
             self,
             action: #selector(changeCount(_:)),

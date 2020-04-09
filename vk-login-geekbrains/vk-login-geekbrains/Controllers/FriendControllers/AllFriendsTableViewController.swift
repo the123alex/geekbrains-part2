@@ -41,7 +41,6 @@ class AllFriendsTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        print(dictFriends.keys.count)
         return dictFriends.keys.count
     }
 
