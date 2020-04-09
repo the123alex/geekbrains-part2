@@ -28,6 +28,12 @@ import UIKit
             self.makeShadow()
         }
     }
+
+    @IBInspectable var shadowOpacity: Float = 1 {
+    didSet {
+        self.makeShadow()
+    }
+}
     func asCircle() {
       //  self.layer.cornerRadius = self.bounds.height / 2
         self.layer.cornerRadius = radius
@@ -37,7 +43,7 @@ import UIKit
     func makeShadow() {
 //        self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowColor = shadowColor.cgColor
-        self.layer.shadowOpacity = 1
+        self.layer.shadowOpacity = shadowOpacity
         self.layer.shadowRadius = shadowRadius
         self.layer.shadowOffset = CGSize.zero
     }
