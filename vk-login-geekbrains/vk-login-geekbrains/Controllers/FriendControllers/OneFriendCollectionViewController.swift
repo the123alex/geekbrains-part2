@@ -15,9 +15,6 @@ class OneFriendCollectionViewController: UICollectionViewController {
     var friendName: String?
     var friendContent: Content?
     
-    var likesTest = 10
-    var likesTestControl = LikeControl()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,8 +39,6 @@ class OneFriendCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: OneFriendCell.self), for: indexPath) as? OneFriendCell else {
         preconditionFailure("Fail")
     }
-        cell.likesView.likesCount = 11
-
         if friendContent?.images[friendName!] == nil {
             cell.friendImageCell.image = UIImage(named: "default")
         } else {
@@ -54,8 +49,6 @@ class OneFriendCollectionViewController: UICollectionViewController {
         return cell
     }
     @IBAction func likeButtonTapped(_ sender: Any) {
-        likesTestControl.test()
-        print("view tapped")
     }
 
 }

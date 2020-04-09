@@ -9,30 +9,52 @@
 import UIKit
 
 class LikeControl: UIControl {
+    var iconButton = UIButton()
+
     var likesCount = 0
-    var liked = false
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    var isLiked = false
+    var randomLikes = Int.random(in: 1...10)
+
+    override func layoutSubviews() {
         setupSubview()
     }
-    
+
     private func setupSubview() {
+        likesCount = randomLikes
+        
+        iconButton.setTitle("\(likesCount) \u{2665}", for: .normal)
+        iconButton.setTitleColor(.black, for: .normal)
+        iconButton.titleLabel?.font = .systemFont(ofSize: 20)
+        
+        iconButton.addTarget(
+            self,
+            action: #selector(changeCount(_:)),
+            for: .touchUpInside
+        )
 
-        let likes = UILabel()
-        likes.bounds = self.frame
-        likes.text = "\u{2661}" + String(likesCount)
-        likes.textAlignment = .center
-        likes.textColor = .black
-        addSubview(likes)
-        likes.center = CGPoint(x: self.frame.size.width  / 2,
-                               y: self.frame.size.height / 2)
+        addSubview(iconButton)
 
-        self.backgroundColor = .yellow
+        iconButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            iconButton.topAnchor.constraint(equalTo: topAnchor),
+            iconButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+            iconButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            iconButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+        ])
     }
 
-    func test() {
-        print("test func")
-        likesCount = 1
+    @objc func changeCount(_ sender: UIButton) {
+        if isLiked {
+            likesCount -= 1
+            iconButton.setTitle("\(likesCount) \u{2665}", for: .normal)
+            iconButton.setTitleColor(.black, for: .normal)
+            isLiked.toggle()
+        } else {
+            likesCount += 1
+            iconButton.setTitle("\(likesCount) \u{2665}", for: .normal)
+            iconButton.setTitleColor(.red, for: .normal)
+            isLiked.toggle()
+        }
     }
 }
