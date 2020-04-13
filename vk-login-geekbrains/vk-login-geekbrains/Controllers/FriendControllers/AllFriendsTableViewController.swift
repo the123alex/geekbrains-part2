@@ -9,6 +9,7 @@
 import UIKit
 
 class AllFriendsTableViewController: UITableViewController {
+    @IBOutlet weak var friendSearchBar: UISearchBar!
 
     var someFriends = [
         User(name: "Boris", age: 22, image: UIImage(named: "default")!),
@@ -21,6 +22,7 @@ class AllFriendsTableViewController: UITableViewController {
         User(name: "Zorro", age: 32, image: UIImage(named: "default")!),
         User(name: "Luke", age: 32, image: UIImage(named: "default")!),
         User(name: "Steven", age: 32, image: UIImage(named: "default")!),
+        User(name: "Steven", age: 32, image: UIImage(named: "default")!),
         User(name: "Max", age: 32, image: UIImage(named: "default")!),
         User(name: "Mary", age: 32, image: UIImage(named: "default")!)
     ]
@@ -30,6 +32,10 @@ class AllFriendsTableViewController: UITableViewController {
     var friendsNames: [String] = []
     var dictFriends: [String: [User]] = [:]
 
+    var friendSearch = [String]()
+    var searchFriendDict: [String: [User]] = [:]
+
+    var searching = false
     override func viewDidLoad() {
         super.viewDidLoad()
         content.images.updateValue(["max", "max2", "max3" ], forKey: "Max")
@@ -43,15 +49,27 @@ class AllFriendsTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dictFriends.keys.count
+        if searching {
+            return searchFriendDict.keys.count
+        } else {
+            return dictFriends.keys.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dictFriends[friendsNames[section]]!.count
+        if searching {
+            return searchFriendDict[friendSearch[section]]!.count
+            } else {
+            return dictFriends[friendsNames[section]]!.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if searching {
+            return friendSearch[section].first?.uppercased()
+        } else {
         return friendsNames[section].first?.uppercased()
+        }
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -64,9 +82,26 @@ class AllFriendsTableViewController: UITableViewController {
             preconditionFailure("Fail")
         }
 
+        if searching {
+            guard let friends = searchFriendDict[friendsNames[indexPath.section]]?[indexPath.row] else
+                {
+                preconditionFailure("Fail")
+                }
+                cell.friendNameCell?.text = friends.name
+                cell.friendImageCell?.image = friends.image
+                cell.friendImageCell?.asCircle()
+            //  cell.viewForShadow?.asCircle()
+                cell.viewForShadow?.makeShadow()
+
+                if UIImage(named: friends.name) != nil {
+                cell.friendImageCell.image = UIImage(named: friends.name)
+                }
+
+        } else {
+
         guard let friends = dictFriends[friendsNames[indexPath.section]]?[indexPath.row] else {
             preconditionFailure("Fail")
-        }
+            }
         cell.friendNameCell?.text = friends.name
         cell.friendImageCell?.image = friends.image
         cell.friendImageCell?.asCircle()
@@ -75,8 +110,8 @@ class AllFriendsTableViewController: UITableViewController {
 
         if UIImage(named: friends.name) != nil {
             cell.friendImageCell.image = UIImage(named: friends.name)
+            }
         }
-
         return cell
     }
     
@@ -87,7 +122,6 @@ class AllFriendsTableViewController: UITableViewController {
             guard let friend = dictFriends[friendsNames[indexPath.section]]?[indexPath.row] else {
                 preconditionFailure("Fail")
             }
-
             let destinationViewController = segue.destination as? OneFriendCollectionViewController
             destinationViewController?.friendContent = content
             destinationViewController?.friendName = friend.name
@@ -113,4 +147,14 @@ class AllFriendsTableViewController: UITableViewController {
         }
         friendsNames = Array(Set(friendsNames)).sorted()
     }
+}
+
+extension AllFriendsTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        friendSearch = friendsNames.filter({$0.prefix(searchText.count) == searchText})
+        searchFriendDict = dictFriends.filter({$0.key.prefix(searchText.count) == searchText})
+        searching = true
+        self.tableView.reloadData()
+    }
+
 }

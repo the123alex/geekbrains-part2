@@ -110,9 +110,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="N9e-zy-pTH">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsTableCell" id="45F-k9-m3R" customClass="FriendsTableCell" customModule="vk_login_geekbrains" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="60.5"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="60.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="45F-k9-m3R" id="qJ4-Ra-YNQ">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60.5"/>
@@ -198,6 +203,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Friends" id="dbt-Zu-gY3"/>
+                    <connections>
+                        <outlet property="friendSearchBar" destination="N9e-zy-pTH" id="Jxc-79-D07"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lfh-Db-s67" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
