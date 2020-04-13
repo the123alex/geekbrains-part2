@@ -45,6 +45,8 @@ class AllFriendsTableViewController: UITableViewController {
         content.likes.updateValue(100, forKey: "max2")
         content.likes.updateValue(50, forKey: "max3")
         makeFriendsList()
+        setUpSearchBar()
+        //self.searchBar(friendSearchBar, textDidChange: "")
         
     }
 
@@ -83,7 +85,7 @@ class AllFriendsTableViewController: UITableViewController {
         }
 
         if searching {
-            guard let friends = searchFriendDict[friendsNames[indexPath.section]]?[indexPath.row] else
+            guard let friends = searchFriendDict[friendSearch[indexPath.section]]?[indexPath.row] else
                 {
                 preconditionFailure("Fail")
                 }
@@ -134,6 +136,10 @@ class AllFriendsTableViewController: UITableViewController {
         }
     }
 
+    func setUpSearchBar() {
+        friendSearchBar.delegate = self
+    }
+
     private func makeFriendsList() {
 
         for element in someFriends {
@@ -154,7 +160,11 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
         friendSearch = friendsNames.filter({$0.prefix(searchText.count) == searchText})
         searchFriendDict = dictFriends.filter({$0.key.prefix(searchText.count) == searchText})
         searching = true
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
-
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        tableView.reloadData()
+    }
 }
