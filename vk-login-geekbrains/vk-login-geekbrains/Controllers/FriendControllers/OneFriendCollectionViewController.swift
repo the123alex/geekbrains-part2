@@ -11,10 +11,10 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class OneFriendCollectionViewController: UICollectionViewController {
-    var friendName: String?
     var friendImage: UIImage?
-    var friendAge: String?
-
+    var friendName: String?
+    var friendContent: Content?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,7 +25,7 @@ class OneFriendCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return friendContent?.images[friendName!]?.count ?? 1
     }
 
 
@@ -39,12 +39,16 @@ class OneFriendCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: OneFriendCell.self), for: indexPath) as? OneFriendCell else {
         preconditionFailure("Fail")
     }
-
-        cell.friendNameCell.text = friendName
-        cell.friendImageCell.image = friendImage
-        cell.friendAgeCell.text = friendAge
+        if friendContent?.images[friendName!] == nil {
+            cell.friendImageCell.image = UIImage(named: "default")
+        } else {
+            cell.friendImageCell.image = UIImage(named: (friendContent?.images[friendName!]![indexPath.section]) ?? "default")
+        }
         // Configure the cell
     
         return cell
     }
+    @IBAction func likeButtonTapped(_ sender: Any) {
+    }
+
 }
