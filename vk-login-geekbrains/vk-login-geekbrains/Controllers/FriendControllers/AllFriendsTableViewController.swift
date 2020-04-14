@@ -28,9 +28,11 @@ class AllFriendsTableViewController: UITableViewController {
     ]
 
     var content: Content = Content(images: [:], likes: [:])
+    var filteredFriends = [User]()
 
-    var friendsNames: [String] = []
+    var friendsNamesFirstLetter: [String] = []
     var dictFriends: [String: [User]] = [:]
+    var friendsNames = [String]()
 
     var friendSearch = [String]()
     var searchFriendDict: [String: [User]] = [:]
@@ -60,9 +62,9 @@ class AllFriendsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
-            return searchFriendDict[friendSearch[section]]!.count
+            return searchFriendDict[String(friendSearch[section].first!)]!.count
             } else {
-            return dictFriends[friendsNames[section]]!.count
+            return dictFriends[friendsNamesFirstLetter[section]]!.count
         }
     }
 
@@ -70,12 +72,12 @@ class AllFriendsTableViewController: UITableViewController {
         if searching {
             return friendSearch[section].first?.uppercased()
         } else {
-        return friendsNames[section].first?.uppercased()
+        return friendsNamesFirstLetter[section].first?.uppercased()
         }
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-           return Array(Set(friendsNames.compactMap{ $0.first?.uppercased() } )).sorted()
+           return Array(Set(friendsNamesFirstLetter.compactMap{ $0.first?.uppercased() } )).sorted()
        }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,7 +87,7 @@ class AllFriendsTableViewController: UITableViewController {
         }
 
         if searching {
-            guard let friends = searchFriendDict[friendSearch[indexPath.section]]?[indexPath.row] else
+            guard let friends = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else
                 {
                 preconditionFailure("Fail")
                 }
@@ -101,7 +103,7 @@ class AllFriendsTableViewController: UITableViewController {
 
         } else {
 
-        guard let friends = dictFriends[friendsNames[indexPath.section]]?[indexPath.row] else {
+        guard let friends = dictFriends[friendsNamesFirstLetter[indexPath.section]]?[indexPath.row] else {
             preconditionFailure("Fail")
             }
         cell.friendNameCell?.text = friends.name
@@ -120,18 +122,34 @@ class AllFriendsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "Friend segue",
             let indexPath = tableView.indexPathForSelectedRow {
+            print(indexPath.section)
+            
+            if searching {
+                guard let friend = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else {
+                    preconditionFailure("Fail")
+                }
+                let destinationViewController = segue.destination as? OneFriendCollectionViewController
+                destinationViewController?.friendContent = content
+                destinationViewController?.friendName = friend.name
 
-            guard let friend = dictFriends[friendsNames[indexPath.section]]?[indexPath.row] else {
-                preconditionFailure("Fail")
-            }
-            let destinationViewController = segue.destination as? OneFriendCollectionViewController
-            destinationViewController?.friendContent = content
-            destinationViewController?.friendName = friend.name
-
-            if UIImage(named: friend.name) != nil {
-                destinationViewController?.friendImage = UIImage(named: friend.name)
+                if UIImage(named: friend.name) != nil {
+                    destinationViewController?.friendImage = UIImage(named: friend.name)
+                } else {
+                    destinationViewController?.friendImage = friend.image
+                }
             } else {
-                destinationViewController?.friendImage = friend.image
+                guard let friend = dictFriends[friendsNamesFirstLetter[indexPath.section]]?[indexPath.row] else {
+                    preconditionFailure("Fail")
+                }
+                let destinationViewController = segue.destination as? OneFriendCollectionViewController
+                destinationViewController?.friendContent = content
+                destinationViewController?.friendName = friend.name
+
+                if UIImage(named: friend.name) != nil {
+                    destinationViewController?.friendImage = UIImage(named: friend.name)
+                } else {
+                    destinationViewController?.friendImage = friend.image
+                }
             }
         }
     }
@@ -143,7 +161,8 @@ class AllFriendsTableViewController: UITableViewController {
     private func makeFriendsList() {
 
         for element in someFriends {
-            friendsNames.append(String(element.name.first!))
+            friendsNames.append(element.name)
+            friendsNamesFirstLetter.append(String(element.name.first!))
 
             guard dictFriends[String(element.name.first!)] == nil else {
                 dictFriends[String(element.name.first!)]?.append(element)
@@ -151,14 +170,29 @@ class AllFriendsTableViewController: UITableViewController {
             }
             dictFriends.updateValue([element], forKey: String(element.name.first!))
         }
-        friendsNames = Array(Set(friendsNames)).sorted()
+        friendsNamesFirstLetter = Array(Set(friendsNamesFirstLetter)).sorted()
     }
 }
 
 extension AllFriendsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            //searchFriendDict = dictFriends
+            searching = false
+            tableView.reloadData()
+
+
+            return
+        }
         friendSearch = friendsNames.filter({$0.prefix(searchText.count) == searchText})
-        searchFriendDict = dictFriends.filter({$0.key.prefix(searchText.count) == searchText})
+
+  //      print(friendSearch)
+        searchFriendDict = dictFriends.filter({$0.key == String(searchText.first!)})
+        for element in searchFriendDict {
+             filteredFriends = element.value.filter({$0.name.prefix(searchText.count) == searchText})
+            searchFriendDict.updateValue(filteredFriends, forKey: element.key)
+        }
+
         searching = true
         tableView.reloadData()
     }
