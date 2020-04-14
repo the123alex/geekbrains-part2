@@ -20,11 +20,20 @@ class FavouriteGroupsTableController: UITableViewController {
             // Получаем индекс выделенной ячейки
             if let indexPath = allGroupsController.tableView.indexPathForSelectedRow {
                 // Получаем группу по индексу
-                let group = allGroupsController.allGroups[indexPath.row]
-                // Проверяем, что такой группы нет в списке
-                if !myGroupsTitles.contains(group.title) {
-                    myGroups.append(group)
-                    myGroupsTitles.append(group.title)
+                if allGroupsController.searching {
+                    let group = allGroupsController.filteredGroups[indexPath.row]
+                    // Проверяем, что такой группы нет в списке
+                    if !myGroupsTitles.contains(group.title) {
+                        myGroups.append(group)
+                        myGroupsTitles.append(group.title)
+                    }
+                } else {
+                    let group = allGroupsController.allGroups[indexPath.row]
+                    // Проверяем, что такой группы нет в списке
+                    if !myGroupsTitles.contains(group.title) {
+                        myGroups.append(group)
+                        myGroupsTitles.append(group.title)
+                    }
                 }
             }
             tableView.reloadData()
