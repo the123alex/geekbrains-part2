@@ -93,4 +93,8 @@ extension AllGroupsTableController: UISearchBarDelegate {
         searchBar.text = ""
         tableView.reloadData()
     }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
 }

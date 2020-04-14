@@ -230,6 +230,10 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
 
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
     func setUpSearchBar() {
         friendSearchBar.delegate = self
     }
