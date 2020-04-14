@@ -39,6 +39,7 @@ class AllFriendsTableViewController: UITableViewController {
 
     var emptyResult = false
     var searching = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         content.images.updateValue(["max", "max2", "max3" ], forKey: "Max")
@@ -47,10 +48,9 @@ class AllFriendsTableViewController: UITableViewController {
         content.likes.updateValue(10, forKey: "max")
         content.likes.updateValue(100, forKey: "max2")
         content.likes.updateValue(50, forKey: "max3")
+
         makeFriendsList()
         setUpSearchBar()
-        //self.searchBar(friendSearchBar, textDidChange: "")
-        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -64,7 +64,10 @@ class AllFriendsTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView
+        (_ tableView: UITableView,
+         numberOfRowsInSection section: Int
+    ) -> Int {
         if emptyResult {
             return 1
         }
@@ -87,8 +90,12 @@ class AllFriendsTableViewController: UITableViewController {
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-           return Array(Set(friendsNamesFirstLetter.compactMap{ $0.first?.uppercased() } )).sorted()
-       }
+        if searching {
+            return  Array(Set(friendSearch.compactMap{ $0.first?.uppercased() } )).sorted()
+        } else {
+            return Array(Set(friendsNamesFirstLetter.compactMap{$0.first?.uppercased()})).sorted()
+        }
+        }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendsTableCell.self), for: indexPath) as? FriendsTableCell else {
@@ -96,12 +103,11 @@ class AllFriendsTableViewController: UITableViewController {
         }
         if emptyResult {
             tableView.reloadData()
-
             return cell
-        } else {
+        }
 
         if searching {
-            //cell.textLabel?.isHidden = true
+            
             guard let friends = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else
                 {
                 preconditionFailure("Fail")
@@ -109,7 +115,6 @@ class AllFriendsTableViewController: UITableViewController {
                 cell.friendNameCell?.text = friends.name
                 cell.friendImageCell?.image = friends.image
                 cell.friendImageCell?.asCircle()
-            //  cell.viewForShadow?.asCircle()
                 cell.viewForShadow?.makeShadow()
 
                 if UIImage(named: friends.name) != nil {
@@ -118,29 +123,26 @@ class AllFriendsTableViewController: UITableViewController {
 
         } else {
 
-        guard let friends = dictFriends[friendsNamesFirstLetter[indexPath.section]]?[indexPath.row] else {
-            preconditionFailure("Fail")
+            guard let friends = dictFriends[friendsNamesFirstLetter[indexPath.section]]?[indexPath.row] else {
+                preconditionFailure("Fail")
             }
-        cell.friendNameCell?.text = friends.name
-        cell.friendImageCell?.image = friends.image
-        cell.friendImageCell?.asCircle()
-        cell.viewForShadow?.makeShadow()
 
-        if UIImage(named: friends.name) != nil {
-            cell.friendImageCell.image = UIImage(named: friends.name)
+            cell.friendNameCell?.text = friends.name
+            cell.friendImageCell?.image = friends.image
+            cell.friendImageCell?.asCircle()
+            cell.viewForShadow?.makeShadow()
+
+            if UIImage(named: friends.name) != nil {
+                cell.friendImageCell.image = UIImage(named: friends.name)
             }
         }
         return cell
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "Friend segue",
             let indexPath = tableView.indexPathForSelectedRow {
-            print(indexPath.section)
-            if emptyResult {
-                return
-            }
+
             if searching {
                 guard let friend = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else {
                     preconditionFailure("Fail")
@@ -154,6 +156,7 @@ class AllFriendsTableViewController: UITableViewController {
                 } else {
                     destinationViewController?.friendImage = friend.image
                 }
+
             } else {
                 guard let friend = dictFriends[friendsNamesFirstLetter[indexPath.section]]?[indexPath.row] else {
                     preconditionFailure("Fail")
@@ -169,10 +172,6 @@ class AllFriendsTableViewController: UITableViewController {
                 }
             }
         }
-    }
-
-    func setUpSearchBar() {
-        friendSearchBar.delegate = self
     }
 
     private func makeFriendsList() {
@@ -194,6 +193,7 @@ class AllFriendsTableViewController: UITableViewController {
 extension AllFriendsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
+        //Проверяем не пустая ли строка
         if searchText.isEmpty {
             searching = false
             emptyResult = false
@@ -201,7 +201,9 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
             tableView.reloadData()
             return
         }
-        friendSearch = friendsNames.filter({$0.prefix(searchText.count) == searchText})
+
+        friendSearch = friendsNames.filter({$0.prefix(searchText.count).lowercased() == searchText.lowercased()})
+        //проверяем результаты
         if friendSearch.isEmpty {
             searching = true
             searchFriendDict.removeAll()
@@ -209,12 +211,14 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
             tableView.reloadData()
             return
         }
-
-        searchFriendDict = dictFriends.filter({$0.key == String(searchText.first!)})
+        //создаём новый словарь из элемента по первой букве
+        searchFriendDict = dictFriends.filter({$0.key.lowercased() == String(searchText.first!.lowercased())})
+        //в словаре удаляем ненайденные имена
         for element in searchFriendDict {
-             filteredFriends = element.value.filter({$0.name.prefix(searchText.count) == searchText})
+            filteredFriends = element.value.filter({$0.name.prefix(searchText.count).lowercased() == searchText.lowercased()})
             searchFriendDict.updateValue(filteredFriends, forKey: element.key)
         }
+
         emptyResult = false
         searching = true
         tableView.reloadData()
@@ -224,5 +228,9 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
         emptyResult = false
         searchBar.text = ""
         tableView.reloadData()
+    }
+
+    func setUpSearchBar() {
+        friendSearchBar.delegate = self
     }
 }
