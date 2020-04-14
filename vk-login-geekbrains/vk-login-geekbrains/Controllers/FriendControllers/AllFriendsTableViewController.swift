@@ -37,6 +37,7 @@ class AllFriendsTableViewController: UITableViewController {
     var friendSearch = [String]()
     var searchFriendDict: [String: [User]] = [:]
 
+    var emptyResult = false
     var searching = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,9 @@ class AllFriendsTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if emptyResult {
+            return 1
+        }
         if searching {
             return searchFriendDict.keys.count
         } else {
@@ -61,6 +65,9 @@ class AllFriendsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if emptyResult {
+            return 1
+        }
         if searching {
             return searchFriendDict[String(friendSearch[section].first!)]!.count
             } else {
@@ -69,6 +76,9 @@ class AllFriendsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if emptyResult {
+            return nil
+        }
         if searching {
             return friendSearch[section].first?.uppercased()
         } else {
@@ -81,12 +91,17 @@ class AllFriendsTableViewController: UITableViewController {
        }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendsTableCell.self), for: indexPath) as? FriendsTableCell else {
             preconditionFailure("Fail")
         }
+        if emptyResult {
+            tableView.reloadData()
+
+            return cell
+        } else {
 
         if searching {
+            //cell.textLabel?.isHidden = true
             guard let friends = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else
                 {
                 preconditionFailure("Fail")
@@ -109,7 +124,6 @@ class AllFriendsTableViewController: UITableViewController {
         cell.friendNameCell?.text = friends.name
         cell.friendImageCell?.image = friends.image
         cell.friendImageCell?.asCircle()
-      //  cell.viewForShadow?.asCircle()
         cell.viewForShadow?.makeShadow()
 
         if UIImage(named: friends.name) != nil {
@@ -117,13 +131,16 @@ class AllFriendsTableViewController: UITableViewController {
             }
         }
         return cell
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "Friend segue",
             let indexPath = tableView.indexPathForSelectedRow {
             print(indexPath.section)
-            
+            if emptyResult {
+                return
+            }
             if searching {
                 guard let friend = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else {
                     preconditionFailure("Fail")
@@ -176,28 +193,35 @@ class AllFriendsTableViewController: UITableViewController {
 
 extension AllFriendsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            //searchFriendDict = dictFriends
+
+        if searchText.isEmpty {
             searching = false
+            emptyResult = false
+            print(searchText)
             tableView.reloadData()
-
-
             return
         }
         friendSearch = friendsNames.filter({$0.prefix(searchText.count) == searchText})
+        if friendSearch.isEmpty {
+            searching = true
+            searchFriendDict.removeAll()
+            emptyResult = true
+            tableView.reloadData()
+            return
+        }
 
-  //      print(friendSearch)
         searchFriendDict = dictFriends.filter({$0.key == String(searchText.first!)})
         for element in searchFriendDict {
              filteredFriends = element.value.filter({$0.name.prefix(searchText.count) == searchText})
             searchFriendDict.updateValue(filteredFriends, forKey: element.key)
         }
-
+        emptyResult = false
         searching = true
         tableView.reloadData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
+        emptyResult = false
         searchBar.text = ""
         tableView.reloadData()
     }
