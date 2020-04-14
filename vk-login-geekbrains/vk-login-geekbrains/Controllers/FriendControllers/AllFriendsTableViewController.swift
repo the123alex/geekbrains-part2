@@ -51,6 +51,7 @@ class AllFriendsTableViewController: UITableViewController {
 
         makeFriendsList()
         setUpSearchBar()
+        
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -197,7 +198,6 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
         if searchText.isEmpty {
             searching = false
             emptyResult = false
-            print(searchText)
             tableView.reloadData()
             return
         }
@@ -227,6 +227,7 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
         searching = false
         emptyResult = false
         searchBar.text = ""
+        view.endEditing(true)
         tableView.reloadData()
     }
 

@@ -37,10 +37,12 @@ class NewsTableController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableCell", for: indexPath)
 
         // Configure the cell...
-
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

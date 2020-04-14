@@ -26,6 +26,9 @@
 		C79FD5EF2436086B003D5204 /* FriendsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79FD5EE2436086B003D5204 /* FriendsTableCell.swift */; };
 		C7BB0BF024461A4C007B6EDB /* NewsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB0BEF24461A4C007B6EDB /* NewsTableCell.swift */; };
 		C7BB0BF224461A7A007B6EDB /* NewsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB0BF124461A7A007B6EDB /* NewsTableController.swift */; };
+		C7BB0BF424464E3C007B6EDB /* CommentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB0BF324464E3C007B6EDB /* CommentControl.swift */; };
+		C7BB0BF624464ED7007B6EDB /* RepostControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB0BF524464ED7007B6EDB /* RepostControl.swift */; };
+		C7BB0BF824464F01007B6EDB /* ViewsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB0BF724464F01007B6EDB /* ViewsControl.swift */; };
 		C7BC8087243B16A800D65BA3 /* FriendPreviewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC8086243B16A800D65BA3 /* FriendPreviewImage.swift */; };
 		C7BC8089243B182200D65BA3 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC8088243B182200D65BA3 /* ShadowView.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +55,9 @@
 		C79FD5EE2436086B003D5204 /* FriendsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableCell.swift; sourceTree = "<group>"; };
 		C7BB0BEF24461A4C007B6EDB /* NewsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCell.swift; sourceTree = "<group>"; };
 		C7BB0BF124461A7A007B6EDB /* NewsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableController.swift; sourceTree = "<group>"; };
+		C7BB0BF324464E3C007B6EDB /* CommentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentControl.swift; sourceTree = "<group>"; };
+		C7BB0BF524464ED7007B6EDB /* RepostControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepostControl.swift; sourceTree = "<group>"; };
+		C7BB0BF724464F01007B6EDB /* ViewsControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsControl.swift; sourceTree = "<group>"; };
 		C7BC8086243B16A800D65BA3 /* FriendPreviewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPreviewImage.swift; sourceTree = "<group>"; };
 		C7BC8088243B182200D65BA3 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +85,9 @@
 			isa = PBXGroup;
 			children = (
 				C7679DD5243B40BE00138187 /* LikeControl.swift */,
+				C7BB0BF324464E3C007B6EDB /* CommentControl.swift */,
+				C7BB0BF524464ED7007B6EDB /* RepostControl.swift */,
+				C7BB0BF724464F01007B6EDB /* ViewsControl.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -258,14 +267,17 @@
 				C7BC8087243B16A800D65BA3 /* FriendPreviewImage.swift in Sources */,
 				C79FD5EF2436086B003D5204 /* FriendsTableCell.swift in Sources */,
 				C7679DD6243B40BE00138187 /* LikeControl.swift in Sources */,
+				C7BB0BF424464E3C007B6EDB /* CommentControl.swift in Sources */,
 				C7BB0BF024461A4C007B6EDB /* NewsTableCell.swift in Sources */,
 				C76BCB142433327E00492952 /* ViewController.swift in Sources */,
 				C76BCB292433546600492952 /* AllFriendsTableViewController.swift in Sources */,
 				C7978A032435E9F5006525F8 /* AllGroupsTableController.swift in Sources */,
+				C7BB0BF824464F01007B6EDB /* ViewsControl.swift in Sources */,
 				C76BCB102433327E00492952 /* AppDelegate.swift in Sources */,
 				C7BC8089243B182200D65BA3 /* ShadowView.swift in Sources */,
 				C7BB0BF224461A7A007B6EDB /* NewsTableController.swift in Sources */,
 				C7978A072435EC82006525F8 /* GroupCell.swift in Sources */,
+				C7BB0BF624464ED7007B6EDB /* RepostControl.swift in Sources */,
 				C7679DD3243B2B7A00138187 /* Content.swift in Sources */,
 				C79789F824353D15006525F8 /* Group.swift in Sources */,
 				C79789F624353D01006525F8 /* User.swift in Sources */,
