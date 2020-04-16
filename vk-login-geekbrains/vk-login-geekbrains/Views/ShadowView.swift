@@ -25,7 +25,7 @@ class ShadowView: UIView {
         animation.fromValue = 1
         animation.toValue = 0.9
         animation.stiffness = 100
-        animation.mass = 0
+        animation.mass = 1
         animation.duration = 0
         animation.autoreverses = true
 
