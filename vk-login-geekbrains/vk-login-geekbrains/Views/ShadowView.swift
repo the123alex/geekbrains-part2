@@ -15,6 +15,7 @@ class ShadowView: UIView {
     }
 
     func makeShadow() {
+        self.layer.backgroundColor = UIColor.lightGray.cgColor
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOpacity = 1
         self.layer.shadowRadius = 3
