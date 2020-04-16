@@ -54,6 +54,6 @@ class RepostControl: UIControl {
             element: iconButton,
             resultTrying: isReposted,
             elementCount: repostCount,
-            elementSymbol: "\u{27A5}")
+            elementSymbol: "\u{27A5}")//arrow
     }
 }

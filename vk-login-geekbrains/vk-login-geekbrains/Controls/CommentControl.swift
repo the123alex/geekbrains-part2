@@ -54,6 +54,6 @@ class CommentControl: UIControl {
             element: iconButton,
             resultTrying: isCommented,
             elementCount: commentCount,
-            elementSymbol: "\u{270E}")
+            elementSymbol: "\u{270E}")//pencil
     }
 }

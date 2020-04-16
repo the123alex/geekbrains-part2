@@ -54,6 +54,6 @@ class LikeControl: UIControl {
             element: iconButton,
             resultTrying: isLiked,
             elementCount: likesCount,
-            elementSymbol: "\u{2665}")
+            elementSymbol: "\u{2665}")//heart
         }
 }
