@@ -56,5 +56,4 @@ class LikeControl: UIControl {
             elementCount: likesCount,
             elementSymbol: "\u{2665}")
         }
-
 }

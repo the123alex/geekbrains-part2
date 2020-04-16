@@ -113,10 +113,10 @@
 		C76BCB0E2433327E00492952 /* vk-login-geekbrains */ = {
 			isa = PBXGroup;
 			children = (
-				C7BB0C0E244876B2007B6EDB /* Extensions */,
 				C76BCB0F2433327E00492952 /* AppDelegate.swift */,
 				C76BCB112433327E00492952 /* SceneDelegate.swift */,
 				C76BCB152433327E00492952 /* Main.storyboard */,
+				C7BB0C0E244876B2007B6EDB /* Extensions */,
 				C7679DD4243B40A200138187 /* Controls */,
 				C7679DD1243B2B6300138187 /* Content */,
 				C7BC8085243B15C900D65BA3 /* Views */,

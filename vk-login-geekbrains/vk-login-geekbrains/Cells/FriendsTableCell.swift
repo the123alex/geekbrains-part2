@@ -22,8 +22,17 @@ class FriendsTableCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+       // friendImageCell.target(forAction: #selector(tappedIcon), withSender: )
         // Configure the view for the selected state
+        //let tap = UITapGestureRecognizer(target: self, action: #selector(tappedIcon))
+        // Присваиваем его UIScrollVIew
+     //   self.addGestureRecognizer(tap)
+        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedIcon))
+        singleTap.numberOfTapsRequired = 1
+        friendImageCell.superview?.addGestureRecognizer(singleTap)
     }
 
+    @objc func tappedIcon() {
+        friendImageCell.animateAuthButton()
+    }
 }

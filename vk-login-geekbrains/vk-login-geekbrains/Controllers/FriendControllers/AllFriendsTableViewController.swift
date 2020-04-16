@@ -179,8 +179,6 @@ class AllFriendsTableViewController: UITableViewController {
             }
         }
     }
-
-
 }
 
 //Создание списка друзей
