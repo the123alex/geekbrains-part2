@@ -13,20 +13,18 @@ class FriendPreviewImage: UIImageView {
         self.layer.cornerRadius = self.bounds.height / 2
     }
     
-    func animateAuthButton() {
+    func animateResize() {
         let animation = CASpringAnimation(keyPath: "transform.scale")
         animation.fromValue = 1
-        animation.toValue = 0.88
-        animation.stiffness = 40
-        animation.mass = 2
-        animation.duration = 1
+        animation.toValue = 0.9
+        animation.stiffness = 100
+        animation.mass = 0
+        animation.duration = 0
         animation.autoreverses = true
 
         animation.beginTime = CACurrentMediaTime()
         animation.fillMode = CAMediaTimingFillMode.forwards
         self.layer.add(animation, forKey: nil)
-
-
     }
 }
 

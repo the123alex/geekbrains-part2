@@ -15,9 +15,22 @@ class ShadowView: UIView {
     }
 
     func makeShadow() {
-        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOpacity = 1
-        self.layer.shadowRadius = 1
+        self.layer.shadowRadius = 3
         self.layer.shadowOffset = CGSize.zero
+    }
+    func animateResize() {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 1
+        animation.toValue = 0.9
+        animation.stiffness = 100
+        animation.mass = 0
+        animation.duration = 0
+        animation.autoreverses = true
+
+        animation.beginTime = CACurrentMediaTime()
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        self.layer.add(animation, forKey: nil)
     }
 }

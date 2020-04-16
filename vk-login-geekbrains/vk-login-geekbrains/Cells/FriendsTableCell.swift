@@ -33,6 +33,7 @@ class FriendsTableCell: UITableViewCell {
     }
 
     @objc func tappedIcon() {
-        friendImageCell.animateAuthButton()
+        viewForShadow.animateResize()
+        friendImageCell.animateResize()
     }
 }
