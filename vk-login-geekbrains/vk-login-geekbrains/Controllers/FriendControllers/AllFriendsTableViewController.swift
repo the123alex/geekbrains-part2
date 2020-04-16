@@ -112,15 +112,18 @@ class AllFriendsTableViewController: UITableViewController {
             guard let friends = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else
                 {
                 preconditionFailure("Fail")
-                }
-                cell.friendNameCell?.text = friends.name
-                cell.friendImageCell?.image = friends.image
-                cell.friendImageCell?.asCircle()
-                cell.viewForShadow?.makeShadow()
+            }
+            
+            cell.friendNameCell?.text = friends.name
+            cell.friendImageCell?.image = friends.image
 
-                if UIImage(named: friends.name) != nil {
+            cell.friendImageCell?.asCircle()
+            cell.viewForShadow.asCircle()
+            cell.viewForShadow?.makeShadow()
+
+            if UIImage(named: friends.name) != nil {
                 cell.friendImageCell.image = UIImage(named: friends.name)
-                }
+            }
 
         } else {
 
@@ -130,7 +133,9 @@ class AllFriendsTableViewController: UITableViewController {
 
             cell.friendNameCell?.text = friends.name
             cell.friendImageCell?.image = friends.image
+
             cell.friendImageCell?.asCircle()
+            cell.viewForShadow.asCircle()
             cell.viewForShadow?.makeShadow()
 
             if UIImage(named: friends.name) != nil {
