@@ -22,7 +22,7 @@ class RepostControl: UIControl {
     private func setupSubview() {
         repostCount = randomCount
 
-        iconButton.setTitle("\u{27A5} \(repostCount)", for: .normal)
+        iconButton.setTitle("\(repostCount) \u{27A5}", for: .normal)
         iconButton.setTitleColor(.black, for: .normal)
         iconButton.titleLabel?.font = .systemFont(ofSize: 20)
 
@@ -47,14 +47,13 @@ class RepostControl: UIControl {
     @objc func changeCount(_ sender: UIButton) {
         if isReposted {
             repostCount -= 1
-            iconButton.setTitle("\u{27A5} \(repostCount) ", for: .normal)
-            iconButton.setTitleColor(.black, for: .normal)
-            isReposted.toggle()
         } else {
             repostCount += 1
-            iconButton.setTitle("\u{27A5} \(repostCount) ", for: .normal)
-            iconButton.setTitleColor(.green, for: .normal)
-            isReposted.toggle()
         }
+        isReposted = tryTapButton(
+            element: iconButton,
+            resultTrying: isReposted,
+            elementCount: repostCount,
+            elementSymbol: "\u{27A5}")
     }
 }

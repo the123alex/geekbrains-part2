@@ -113,7 +113,7 @@ class AllFriendsTableViewController: UITableViewController {
                 {
                 preconditionFailure("Fail")
             }
-            
+
             cell.friendNameCell?.text = friends.name
             cell.friendImageCell?.image = friends.image
 
@@ -180,6 +180,11 @@ class AllFriendsTableViewController: UITableViewController {
         }
     }
 
+
+}
+
+//Создание списка друзей
+extension AllFriendsTableViewController {
     private func makeFriendsList() {
 
         for element in someFriends {
@@ -196,6 +201,7 @@ class AllFriendsTableViewController: UITableViewController {
     }
 }
 
+//Поиск
 extension AllFriendsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 

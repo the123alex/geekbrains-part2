@@ -47,14 +47,14 @@ class LikeControl: UIControl {
     @objc func changeCount(_ sender: UIButton) {
         if isLiked {
             likesCount -= 1
-            iconButton.setTitle("\(likesCount) \u{2665}", for: .normal)
-            iconButton.setTitleColor(.black, for: .normal)
-            isLiked.toggle()
         } else {
             likesCount += 1
-            iconButton.setTitle("\(likesCount) \u{2665}", for: .normal)
-            iconButton.setTitleColor(.red, for: .normal)
-            isLiked.toggle()
         }
-    }
+        isLiked = tryTapButton(
+            element: iconButton,
+            resultTrying: isLiked,
+            elementCount: likesCount,
+            elementSymbol: "\u{2665}")
+        }
+
 }

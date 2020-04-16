@@ -11,7 +11,7 @@ import UIKit
 class CommentControl: UIControl {
     var iconButton = UIButton()
 
-    var repostCount = 0
+    var commentCount = 0
     var isCommented = false
     let randomCount = Int.random(in: 1...10)
 
@@ -20,9 +20,9 @@ class CommentControl: UIControl {
     }
 
     private func setupSubview() {
-        repostCount = randomCount
+        commentCount = randomCount
 
-        iconButton.setTitle("\(repostCount) \u{270E}", for: .normal)
+        iconButton.setTitle("\(commentCount) \u{270E}", for: .normal)
         iconButton.setTitleColor(.black, for: .normal)
         iconButton.titleLabel?.font = .systemFont(ofSize: 20)
 
@@ -46,15 +46,14 @@ class CommentControl: UIControl {
 
     @objc func changeCount(_ sender: UIButton) {
         if isCommented {
-            repostCount -= 1
-            iconButton.setTitle("\(repostCount) \u{270E}", for: .normal)
-            iconButton.setTitleColor(.black, for: .normal)
-            isCommented.toggle()
+            commentCount -= 1
         } else {
-            repostCount += 1
-            iconButton.setTitle("\(repostCount) \u{270E}", for: .normal)
-            iconButton.setTitleColor(.blue, for: .normal)
-            isCommented.toggle()
+            commentCount += 1
         }
+        isCommented = tryTapButton(
+            element: iconButton,
+            resultTrying: isCommented,
+            elementCount: commentCount,
+            elementSymbol: "\u{270E}")
     }
 }
