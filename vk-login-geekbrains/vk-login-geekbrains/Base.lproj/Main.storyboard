@@ -442,46 +442,46 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTableCell" id="WAR-dz-eiW" customClass="NewsTableCell" customModule="vk_login_geekbrains" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="704"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="699"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WAR-dz-eiW" id="AR1-3A-9yT">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="704"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="699"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="catalina" translatesAutoresizingMaskIntoConstraints="NO" id="55M-zS-2Qf">
-                                            <rect key="frame" x="0.0" y="237" width="414" height="414"/>
+                                            <rect key="frame" x="0.0" y="232" width="414" height="414"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="55M-zS-2Qf" secondAttribute="height" multiplier="1:1" id="QAj-J8-pz7"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="k3j-ua-4hu">
-                                            <rect key="frame" x="20" y="18" width="50" height="46.5"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="k3j-ua-4hu">
+                                            <rect key="frame" x="20" y="12" width="50" height="47.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="2Uj-RH-DFi"/>
                                                 <constraint firstAttribute="width" secondItem="k3j-ua-4hu" secondAttribute="height" multiplier="1:1" id="nZU-JR-3gk"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рекламная запись" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n84-fB-77A">
-                                            <rect key="frame" x="75" y="6" width="152" height="20.5"/>
+                                            <rect key="frame" x="75" y="11" width="152" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01.01.2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKL-va-Rbe">
-                                            <rect key="frame" x="75" y="30.5" width="89" height="21"/>
+                                            <rect key="frame" x="75" y="35.5" width="89" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8a-dH-hMJ">
-                                            <rect key="frame" x="20" y="74" width="374" height="163"/>
+                                            <rect key="frame" x="20" y="69" width="374" height="163"/>
                                             <string key="text">С macOS Catalina вы ещё больше полюбите свой Mac. Три совершенно новых приложения — для музыки, видеоконтента и подкастов. Ваши любимые приложения для iPad, которые теперь есть и на Mac. Возможность увеличивать рабочее пространство и воплощать творческие замыслы с iPad и Apple Pencil. </string>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5G-Lq-C99" customClass="LikeControl" customModule="vk_login_geekbrains" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="653" width="50" height="50"/>
+                                            <rect key="frame" x="20" y="648" width="50" height="50"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="SBb-r3-UAk"/>
@@ -489,7 +489,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USk-lM-olu" userLabel="repost" customClass="RepostControl" customModule="vk_login_geekbrains" customModuleProvider="target">
-                                            <rect key="frame" x="130" y="653" width="50" height="50"/>
+                                            <rect key="frame" x="130" y="648" width="50" height="50"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="4Hk-29-JyG"/>
@@ -497,7 +497,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLm-Tm-Qdr" userLabel="views" customClass="ViewsControl" customModule="vk_login_geekbrains" customModuleProvider="target">
-                                            <rect key="frame" x="349" y="653" width="50" height="50"/>
+                                            <rect key="frame" x="349" y="648" width="50" height="50"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="DTA-fX-S0z"/>
@@ -505,7 +505,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bda-2z-wfu" userLabel="comment" customClass="CommentControl" customModule="vk_login_geekbrains" customModuleProvider="target">
-                                            <rect key="frame" x="75" y="653" width="50" height="50"/>
+                                            <rect key="frame" x="75" y="648" width="50" height="50"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="5pd-5n-TNX"/>
@@ -521,7 +521,7 @@
                                         <constraint firstItem="cLm-Tm-Qdr" firstAttribute="trailing" secondItem="AR1-3A-9yT" secondAttribute="trailingMargin" constant="5" id="9IM-2q-oxM"/>
                                         <constraint firstAttribute="trailing" secondItem="n84-fB-77A" secondAttribute="trailing" priority="750" constant="187" id="EgT-02-pFh"/>
                                         <constraint firstItem="USk-lM-olu" firstAttribute="leading" secondItem="Bda-2z-wfu" secondAttribute="trailing" constant="5" id="IvK-bh-UjC"/>
-                                        <constraint firstItem="k3j-ua-4hu" firstAttribute="top" secondItem="AR1-3A-9yT" secondAttribute="topMargin" constant="5" id="LCb-iJ-DzA"/>
+                                        <constraint firstItem="k3j-ua-4hu" firstAttribute="top" secondItem="AR1-3A-9yT" secondAttribute="topMargin" id="LCb-iJ-DzA"/>
                                         <constraint firstItem="f5G-Lq-C99" firstAttribute="top" secondItem="55M-zS-2Qf" secondAttribute="bottom" constant="2" id="TfZ-wJ-CjO"/>
                                         <constraint firstItem="dKL-va-Rbe" firstAttribute="leading" secondItem="k3j-ua-4hu" secondAttribute="trailing" constant="5" id="Xge-UT-p4F"/>
                                         <constraint firstItem="k3j-ua-4hu" firstAttribute="leading" secondItem="AR1-3A-9yT" secondAttribute="leadingMargin" id="aeb-cI-nvF"/>
@@ -533,7 +533,7 @@
                                         <constraint firstAttribute="trailing" secondItem="55M-zS-2Qf" secondAttribute="trailing" id="jTT-4I-5H2"/>
                                         <constraint firstItem="dKL-va-Rbe" firstAttribute="top" secondItem="n84-fB-77A" secondAttribute="bottom" constant="4" id="o7c-2j-x4c"/>
                                         <constraint firstItem="55M-zS-2Qf" firstAttribute="leading" secondItem="AR1-3A-9yT" secondAttribute="leading" id="t7Y-zw-WQg"/>
-                                        <constraint firstItem="n84-fB-77A" firstAttribute="top" secondItem="AR1-3A-9yT" secondAttribute="top" constant="6" id="ttR-T7-EHi"/>
+                                        <constraint firstItem="n84-fB-77A" firstAttribute="top" secondItem="AR1-3A-9yT" secondAttribute="top" constant="11" id="ttR-T7-EHi"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="dKL-va-Rbe" secondAttribute="trailing" priority="750" constant="230" id="uUp-Mf-VJC"/>
                                         <constraint firstItem="Bda-2z-wfu" firstAttribute="centerY" secondItem="f5G-Lq-C99" secondAttribute="centerY" id="v21-vt-sxF"/>
                                         <constraint firstItem="f5G-Lq-C99" firstAttribute="leading" secondItem="AR1-3A-9yT" secondAttribute="leadingMargin" id="wJE-7A-09g"/>
@@ -608,7 +608,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="book.fill" catalog="system" width="64" height="50"/>
         <image name="catalina" width="2908" height="1734"/>
+        <image name="folder.fill" catalog="system" width="64" height="46"/>
     </resources>
 </document>
