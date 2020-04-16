@@ -16,12 +16,12 @@ class FriendPreviewImage: UIImageView {
     func animateAuthButton() {
         let animation = CASpringAnimation(keyPath: "transform.scale")
         animation.fromValue = 1
-        animation.toValue = 1.15
-        animation.stiffness = 50
+        animation.toValue = 0.88
+        animation.stiffness = 40
         animation.mass = 2
         animation.duration = 1
         animation.autoreverses = true
-        
+
         animation.beginTime = CACurrentMediaTime()
         animation.fillMode = CAMediaTimingFillMode.forwards
         self.layer.add(animation, forKey: nil)
