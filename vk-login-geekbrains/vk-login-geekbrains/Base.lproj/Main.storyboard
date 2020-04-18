@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-ao-VW4">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-ao-VW4">
                                 <rect key="frame" x="20" y="44" width="374" height="818"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IH2-0k-vsJ">
@@ -59,15 +59,25 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrF-wR-fit" customClass="LoadingView" customModule="vk_login_geekbrains" customModuleProvider="target">
+                                        <rect key="frame" x="87" y="605" width="200" height="106"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="a7E-3i-Sqp"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="GX5-7g-eFy" firstAttribute="width" secondItem="0I2-aB-u1F" secondAttribute="width" id="38T-k6-PIY"/>
+                                    <constraint firstItem="TIg-iQ-lW2" firstAttribute="bottom" secondItem="WrF-wR-fit" secondAttribute="bottom" constant="107" id="Ck3-qu-0gp"/>
                                     <constraint firstItem="v64-Lg-HZ7" firstAttribute="width" secondItem="0I2-aB-u1F" secondAttribute="width" id="DHp-R3-0OM"/>
                                     <constraint firstItem="gt8-3l-gWj" firstAttribute="top" secondItem="NGc-Ff-cxk" secondAttribute="bottom" constant="70" id="F8T-ZF-tdO"/>
                                     <constraint firstItem="NGc-Ff-cxk" firstAttribute="top" secondItem="0I2-aB-u1F" secondAttribute="bottom" constant="10" id="Iu2-yY-owX"/>
                                     <constraint firstAttribute="trailing" secondItem="IH2-0k-vsJ" secondAttribute="trailing" constant="100" id="R1A-x6-wdl"/>
                                     <constraint firstItem="NGc-Ff-cxk" firstAttribute="width" secondItem="0I2-aB-u1F" secondAttribute="width" id="RvA-Cr-F8O"/>
+                                    <constraint firstItem="WrF-wR-fit" firstAttribute="centerX" secondItem="gt8-3l-gWj" secondAttribute="centerX" id="Rwe-Tf-yz6"/>
                                     <constraint firstItem="GX5-7g-eFy" firstAttribute="top" secondItem="IH2-0k-vsJ" secondAttribute="bottom" constant="100" id="S7b-E7-KPX"/>
+                                    <constraint firstItem="WrF-wR-fit" firstAttribute="top" secondItem="gt8-3l-gWj" secondAttribute="bottom" constant="30" id="UlS-aT-H7s"/>
                                     <constraint firstItem="IH2-0k-vsJ" firstAttribute="centerX" secondItem="Wwv-ao-VW4" secondAttribute="centerX" id="Xie-88-i5L"/>
                                     <constraint firstItem="v64-Lg-HZ7" firstAttribute="top" secondItem="GX5-7g-eFy" secondAttribute="bottom" constant="10" id="Zqh-T2-jc8"/>
                                     <constraint firstItem="IH2-0k-vsJ" firstAttribute="top" secondItem="Wwv-ao-VW4" secondAttribute="top" constant="100" id="b5M-ra-wHb"/>
@@ -77,7 +87,6 @@
                                     <constraint firstItem="0I2-aB-u1F" firstAttribute="centerX" secondItem="GX5-7g-eFy" secondAttribute="centerX" id="kIF-IQ-4wc"/>
                                     <constraint firstItem="GX5-7g-eFy" firstAttribute="centerX" secondItem="IH2-0k-vsJ" secondAttribute="centerX" id="myW-3A-8TH"/>
                                     <constraint firstItem="0I2-aB-u1F" firstAttribute="top" secondItem="v64-Lg-HZ7" secondAttribute="bottom" constant="50" id="q7n-94-JmX"/>
-                                    <constraint firstAttribute="bottom" secondItem="gt8-3l-gWj" secondAttribute="bottom" id="snO-gq-Jji"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Yj4-Q5-srz"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="TIg-iQ-lW2"/>
@@ -93,6 +102,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="loadingView" destination="WrF-wR-fit" id="9Bd-gc-24H"/>
                         <outlet property="loginInput" destination="v64-Lg-HZ7" id="xfP-2K-h0u"/>
                         <outlet property="passwordInput" destination="NGc-Ff-cxk" id="W7h-f1-ZSv"/>
                         <outlet property="scrollView" destination="Wwv-ao-VW4" id="tZc-MO-sNx"/>

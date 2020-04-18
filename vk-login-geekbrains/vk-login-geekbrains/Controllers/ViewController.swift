@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
 
+    @IBOutlet weak var loadingView: LoadingView!
     @IBAction func loginButtonPressed(_ sender: Any) {
     }
 
@@ -23,6 +24,8 @@ class ViewController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         // Присваиваем его UIScrollVIew
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+        loadingView.awakeFromNib()
+        
 
     }
 
