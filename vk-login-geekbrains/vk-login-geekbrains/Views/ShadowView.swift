@@ -9,42 +9,29 @@
 import UIKit
 
 
-@IBDesignable class ShadowView: UIView {
-
-    @IBInspectable var radius: CGFloat = 10 {
-        didSet {
-            self.asCircle()
-        }
-    }
-
-    @IBInspectable var shadowColor: UIColor = UIColor.black {
-        didSet {
-            self.makeShadow()
-        }
-    }
-
-    @IBInspectable var shadowRadius: CGFloat = 1 {
-        didSet {
-            self.makeShadow()
-        }
-    }
-
-    @IBInspectable var shadowOpacity: Float = 1 {
-    didSet {
-        self.makeShadow()
-    }
-}
+class ShadowView: UIView {
     func asCircle() {
-      //  self.layer.cornerRadius = self.bounds.height / 2
-        self.layer.cornerRadius = radius
-
+        self.layer.cornerRadius = self.bounds.height / 2
     }
 
     func makeShadow() {
-//        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowColor = shadowColor.cgColor
-        self.layer.shadowOpacity = shadowOpacity
-        self.layer.shadowRadius = shadowRadius
+        self.layer.backgroundColor = UIColor.lightGray.cgColor
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOpacity = 1
+        self.layer.shadowRadius = 3
         self.layer.shadowOffset = CGSize.zero
+    }
+    func animateResize() {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 1
+        animation.toValue = 0.9
+        animation.stiffness = 100
+        animation.mass = 1
+        animation.duration = 0
+        animation.autoreverses = true
+
+        animation.beginTime = CACurrentMediaTime()
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        self.layer.add(animation, forKey: nil)
     }
 }

@@ -9,15 +9,22 @@
 import UIKit
 
 class FriendPreviewImage: UIImageView {
-
-    @IBInspectable var radius: CGFloat = 10 {
-        didSet {
-            self.asCircle()
-        }
-    }
-
     func asCircle() {
-        self.layer.cornerRadius = radius
+        self.layer.cornerRadius = self.bounds.height / 2
+    }
+    
+    func animateResize() {
+        let animation = CASpringAnimation(keyPath: "transform.scale")
+        animation.fromValue = 1
+        animation.toValue = 0.9
+        animation.stiffness = 100
+        animation.mass = 1
+        animation.duration = 0
+        animation.autoreverses = true
+
+        animation.beginTime = CACurrentMediaTime()
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        self.layer.add(animation, forKey: nil)
     }
 }
 

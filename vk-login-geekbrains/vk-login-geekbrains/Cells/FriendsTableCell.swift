@@ -23,7 +23,13 @@ class FriendsTableCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tappedIcon))
+        viewForShadow.superview?.addGestureRecognizer(singleTap)
+       // friendImageCell.superview?.addGestureRecognizer(singleTap)
     }
 
+    @objc func tappedIcon() {
+        viewForShadow.animateResize()
+        friendImageCell.animateResize()
+    }
 }
