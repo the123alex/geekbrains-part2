@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7284CCF244E216F00870CC7 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7284CCE244E216F00870CC7 /* ContentViewController.swift */; };
 		C72BAB6C2449ACEF0086EDC3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72BAB6B2449ACEF0086EDC3 /* LoadingView.swift */; };
 		C7679DD3243B2B7A00138187 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7679DD2243B2B7A00138187 /* Content.swift */; };
 		C7679DD6243B40BE00138187 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7679DD5243B40BE00138187 /* LikeControl.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C7284CCE244E216F00870CC7 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		C72BAB6B2449ACEF0086EDC3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		C7679DD2243B2B7A00138187 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		C7679DD5243B40BE00138187 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				C7679DD2243B2B7A00138187 /* Content.swift */,
+				C7284CCE244E216F00870CC7 /* ContentViewController.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				C7BB0C10244876C9007B6EDB /* Control + Extension.swift in Sources */,
 				C7BB0BF624464ED7007B6EDB /* RepostControl.swift in Sources */,
 				C7679DD3243B2B7A00138187 /* Content.swift in Sources */,
+				C7284CCF244E216F00870CC7 /* ContentViewController.swift in Sources */,
 				C79789F824353D15006525F8 /* Group.swift in Sources */,
 				C79789F624353D01006525F8 /* User.swift in Sources */,
 				C7978A052435EA65006525F8 /* FavouriteGroupsTableController.swift in Sources */,

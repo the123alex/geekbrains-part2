@@ -48,6 +48,17 @@ class OneFriendCollectionViewController: UICollectionViewController {
     
         return cell
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "imageChoosed" {
+            
+            print(111111)
+        }
+            let destinationViewController = segue.destination as? ContentViewController
+        destinationViewController?.contentArray = friendContent!.images[friendName!] ?? []
+         //   destinationViewController?.friendName = friend.name
+
+
+    }
     @IBAction func likeButtonTapped(_ sender: Any) {
     }
 
