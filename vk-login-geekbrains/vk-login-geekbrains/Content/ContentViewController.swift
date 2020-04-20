@@ -26,10 +26,51 @@ class ContentViewController: UIViewController {
             addSubviews()
         }
 
-        print(contentArray)
+//        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
+//        midImageView.superview!.addGestureRecognizer(recognizer)
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handSwipe))
+        leftSwipe.direction = .left
+        self.midImageView.superview?.addGestureRecognizer(leftSwipe)
+
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handSwipe))
+        rightSwipe.direction = .right
+        self.midImageView.superview?.addGestureRecognizer(rightSwipe)
     }
 
+    @objc func handSwipe(gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case .left:
+            if midIndex == contentArray.count - 1 {
+                midIndex = 0
+                setIndex(content: contentArray)
+              //  view.reloadInputViews()
+                //view.reloadInputViews()
+                addSubviews()
+            } else {
+                midIndex += 1
+                setIndex(content: contentArray)
+                addSubviews()
+                //view.reloadInputViews()
+            }
+        case .right:
+            if midIndex == 0 {
+                midIndex = contentArray.count - 1
+                setIndex(content: contentArray)
 
+                addSubviews()
+                //view.reloadInputViews()
+            } else {
+                midIndex -= 1
+                setIndex(content: contentArray)
+                addSubviews()
+            //view.reloadInputViews()
+
+            }
+
+        default:
+            return
+        }
+    }
     func addSubviews() {
         backView.addSubview(leftImageView)
         backView.addSubview(midImageView)
@@ -86,4 +127,40 @@ class ContentViewController: UIViewController {
             rightIndex = midIndex
         }
     }
+
+    var interactiveAnimator: UIViewPropertyAnimator!
+
+//    @objc func onPan(_ recognizer: UIPanGestureRecognizer) {
+//
+//        switch recognizer.state {
+//        case .began:
+//            interactiveAnimator = UIViewPropertyAnimator(
+//                duration: 0,
+//                curve: .easeInOut,
+//                animations: {
+//                    self.midImageView.frame = self.midImageView.frame.offsetBy(
+//                        dx: 10,
+//                        dy: 100
+//                    )
+//                    self.leftImageView.frame = self.leftImageView.frame.offsetBy(
+//                        dx: 10,
+//                        dy: 0
+//                    )
+//                    self.rightImageView.frame = self.rightImageView.frame.offsetBy(
+//                        dx: 10,
+//                        dy: 0
+//                    )
+//            })
+//          //  interactiveAnimator.pauseAnimation()
+//        case .changed:
+//            let translation = recognizer.translation(in: self.view)
+//            print(translation.x)
+//            interactiveAnimator.fractionComplete = translation.x / 100
+//        case .ended:
+//            interactiveAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+//        default: return
+//        }
+//    }
+
 }
+

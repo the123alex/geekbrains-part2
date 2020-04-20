@@ -256,7 +256,7 @@
                                 <connections>
                                     <outlet property="friendImageCell" destination="i1a-WR-l25" id="zTe-4A-pfK"/>
                                     <outlet property="likesView" destination="xPG-2N-CKL" id="6H2-ZR-RyR"/>
-                                    <segue destination="p3g-Pp-Rjd" kind="showDetail" identifier="imageChoosed" id="sdl-W8-iRc"/>
+                                    <segue destination="p3g-Pp-Rjd" kind="show" identifier="imageChoosed" id="raR-Ap-cLV"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -280,7 +280,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQk-yH-82S">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
@@ -293,6 +293,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KFr-5v-iEP"/>
                     </view>
+                    <navigationItem key="navigationItem" id="heZ-oN-9gc"/>
                     <connections>
                         <outlet property="backView" destination="qQk-yH-82S" id="F2l-LC-b6Z"/>
                     </connections>
