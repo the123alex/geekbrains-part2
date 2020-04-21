@@ -223,38 +223,5 @@ class ContentViewController: UIViewController {
             return
         }
     }
-
-//    @objc func onPan(_ recognizer: UIPanGestureRecognizer) {
-//
-//        switch recognizer.state {
-//        case .began:
-//            interactiveAnimator = UIViewPropertyAnimator(
-//                duration: 0,
-//                curve: .easeInOut,
-//                animations: {
-//                    self.midImageView.frame = self.midImageView.frame.offsetBy(
-//                        dx: 10,
-//                        dy: 100
-//                    )
-//                    self.leftImageView.frame = self.leftImageView.frame.offsetBy(
-//                        dx: 10,
-//                        dy: 0
-//                    )
-//                    self.rightImageView.frame = self.rightImageView.frame.offsetBy(
-//                        dx: 10,
-//                        dy: 0
-//                    )
-//            })
-//          //  interactiveAnimator.pauseAnimation()
-//        case .changed:
-//            let translation = recognizer.translation(in: self.view)
-//            print(translation.x)
-//            interactiveAnimator.fractionComplete = translation.x / 100
-//        case .ended:
-//            interactiveAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-//        default: return
-//        }
-//    }
-
 }
 
