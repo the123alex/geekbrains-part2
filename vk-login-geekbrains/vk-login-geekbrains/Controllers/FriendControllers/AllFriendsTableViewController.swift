@@ -96,7 +96,7 @@ class AllFriendsTableViewController: UITableViewController {
         } else {
             return Array(Set(friendsNamesFirstLetter.compactMap{$0.first?.uppercased()})).sorted()
         }
-        }
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendsTableCell.self), for: indexPath) as? FriendsTableCell else {

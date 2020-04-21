@@ -11,7 +11,6 @@ import UIKit
 class ContentViewController: UIViewController {
     @IBOutlet var backView: UIView!
 
-    var contentArray = [String]()
     var leftImageView = UIImageView()
     var midImageView = UIImageView()
     var rightImageView = UIImageView()
@@ -19,15 +18,15 @@ class ContentViewController: UIViewController {
     var leftIndex = Int()
     var midIndex = Int()
     var rightIndex = Int()
+    var contentArray = [String]()
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         if contentArray.count != 0 {
             setIndex(content: contentArray)
             addSubviews()
         }
 
-//        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
-//        midImageView.superview!.addGestureRecognizer(recognizer)
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handSwipe))
         leftSwipe.direction = .left
         self.midImageView.superview?.addGestureRecognizer(leftSwipe)
@@ -37,40 +36,7 @@ class ContentViewController: UIViewController {
         self.midImageView.superview?.addGestureRecognizer(rightSwipe)
     }
 
-    @objc func handSwipe(gesture: UISwipeGestureRecognizer) {
-        switch gesture.direction {
-        case .left:
-            if midIndex == contentArray.count - 1 {
-                midIndex = 0
-                setIndex(content: contentArray)
-              //  view.reloadInputViews()
-                //view.reloadInputViews()
-                addSubviews()
-            } else {
-                midIndex += 1
-                setIndex(content: contentArray)
-                addSubviews()
-                //view.reloadInputViews()
-            }
-        case .right:
-            if midIndex == 0 {
-                midIndex = contentArray.count - 1
-                setIndex(content: contentArray)
-
-                addSubviews()
-                //view.reloadInputViews()
-            } else {
-                midIndex -= 1
-                setIndex(content: contentArray)
-                addSubviews()
-            //view.reloadInputViews()
-
-            }
-
-        default:
-            return
-        }
-    }
+//add and reload images
     func addSubviews() {
         backView.addSubview(leftImageView)
         backView.addSubview(midImageView)
@@ -83,28 +49,32 @@ class ContentViewController: UIViewController {
         NSLayoutConstraint.activate([
             midImageView.centerXAnchor.constraint(equalTo: backView.centerXAnchor),
             midImageView.centerYAnchor.constraint(equalTo: backView.centerYAnchor),
-            midImageView.widthAnchor.constraint(equalToConstant: 200),
-            midImageView.heightAnchor.constraint(equalToConstant: 200)
+            midImageView.widthAnchor.constraint(equalToConstant: 275),
+            midImageView.heightAnchor.constraint(equalToConstant: 300)
         ])
 
         NSLayoutConstraint.activate([
-            leftImageView.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: -150),
+            leftImageView.trailingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 30),
             leftImageView.centerYAnchor.constraint(equalTo: backView.centerYAnchor),
             leftImageView.widthAnchor.constraint(equalToConstant: 200),
             leftImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
 
         NSLayoutConstraint.activate([
-            rightImageView.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: 150),
+            rightImageView.leadingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -30),
             rightImageView.centerYAnchor.constraint(equalTo: backView.centerYAnchor),
             rightImageView.widthAnchor.constraint(equalToConstant: 200),
             rightImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
 
-        leftImageView.image = UIImage(named: contentArray[leftIndex])
-        midImageView.image = UIImage(named: contentArray[midIndex])
-        rightImageView.image = UIImage(named: contentArray[rightIndex])
+        leftImageView.image = UIImage(named: self.contentArray[self.leftIndex])
+        midImageView.image = UIImage(named: self.contentArray[self.midIndex])
+        rightImageView.image = UIImage(named: self.contentArray[self.rightIndex])
+        leftImageView.alpha = 0.5
+        rightImageView.alpha = 0.5
     }
+    
+//set index for choosed image
     func setIndex(content: [String]) {
         if content.count > 2 {
             if midIndex == content.count - 1 {
@@ -128,7 +98,132 @@ class ContentViewController: UIViewController {
         }
     }
 
-    var interactiveAnimator: UIViewPropertyAnimator!
+//check swipe
+    @objc func handSwipe(gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case .left:
+            UIView.animateKeyframes(
+                withDuration: 1,
+                delay: 0,
+                options: .beginFromCurrentState,
+                animations: {
+                    UIView.addKeyframe(
+                        withRelativeStartTime: 0,
+                        relativeDuration: 1,
+                        animations: {
+                            self.midImageView.frame = self.midImageView.frame.offsetBy(
+                                dx: -100,
+                                dy: 0
+                            )
+                            self.leftImageView.frame = self.leftImageView.frame.offsetBy(
+                                dx: -100,
+                                dy: 0
+                            )
+
+                            self.rightImageView.frame = self.rightImageView.frame.offsetBy(
+                                dx: -100,
+                                dy: 0
+                            )
+                            self.midImageView.transform = CGAffineTransform(
+                                scaleX: 0.8,
+                                y: 0.8
+                            )
+
+                            self.midImageView.alpha = 0.8
+                    })
+            }, completion:{ _ in
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 0,
+                    options: .curveEaseInOut,
+                    animations: {
+                        self.midImageView.frame = self.midImageView.frame.offsetBy(
+                            dx: 100,
+                            dy: 0
+                        )
+                        self.leftImageView.frame = self.leftImageView.frame.offsetBy(
+                            dx: 100,
+                            dy: 0
+                        )
+                        self.rightImageView.frame = self.rightImageView.frame.offsetBy(
+                            dx: 100,
+                            dy: 0
+                        )
+                        self.midImageView.transform = .identity
+                        self.addSubviews()
+
+                })
+            })
+                if self.midIndex == self.contentArray.count - 1 {
+                    self.midIndex = 0
+                    self.setIndex(content: self.contentArray)
+                } else {
+                    self.midIndex += 1
+                    self.setIndex(content: self.contentArray)
+                }
+
+        case .right:
+            UIView.animateKeyframes(
+                withDuration: 1,
+                delay: 0,
+                options: .beginFromCurrentState,
+                animations: {
+                    UIView.addKeyframe(
+                        withRelativeStartTime: 0,
+                        relativeDuration: 1,
+                        animations: {
+                            self.midImageView.frame = self.midImageView.frame.offsetBy(
+                                dx: 100,
+                                dy: 0
+                            )
+                            self.leftImageView.frame = self.leftImageView.frame.offsetBy(
+                                dx: 100,
+                                dy: 0
+                            )
+
+                            self.rightImageView.frame = self.rightImageView.frame.offsetBy(
+                                dx: 100,
+                                dy: 0
+                            )
+                            self.midImageView.transform = CGAffineTransform(
+                                scaleX: 0.8,
+                                y: 0.8
+                            )
+                            self.midImageView.alpha = 0.8
+                    })
+            }, completion:{ _ in
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 0,
+                    options: .curveEaseInOut,
+                    animations: {
+                        self.midImageView.frame = self.midImageView.frame.offsetBy(
+                            dx: -100,
+                            dy: 0
+                        )
+                        self.leftImageView.frame = self.leftImageView.frame.offsetBy(
+                            dx: -100,
+                            dy: 0
+                        )
+                        self.rightImageView.frame = self.rightImageView.frame.offsetBy(
+                            dx: -100,
+                            dy: 0
+                        )
+                        self.midImageView.transform = .identity
+                        self.addSubviews()
+                })
+            })
+            if midIndex == 0 {
+                midIndex = contentArray.count - 1
+                setIndex(content: contentArray)
+            } else {
+                midIndex -= 1
+                setIndex(content: contentArray)
+            }
+        default:
+            return
+        }
+    }
 
 //    @objc func onPan(_ recognizer: UIPanGestureRecognizer) {
 //
