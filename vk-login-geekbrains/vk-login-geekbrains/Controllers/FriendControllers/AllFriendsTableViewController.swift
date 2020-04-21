@@ -44,11 +44,23 @@ class AllFriendsTableViewController: UITableViewController {
         super.viewDidLoad()
         content.images.updateValue(["max", "max2", "max3" ], forKey: "Max")
         content.images.updateValue(["boris1", "boris2"], forKey: "Boris")
+        content.images.updateValue(
+            ["red1", "red2", "red3", "red4", "red5", "red6" ],
+            forKey: "Anna"
+        )
+        content.images.updateValue(
+            ["red1", "red2", "red3", "red4", "red5", "red6" ],
+            forKey: "Ivan"
+        )
+        content.images.updateValue(
+            ["red1", "red2", "red3", "red4", "red5", "red6" ],
+            forKey: "Bob"
+        )
+        content.images.updateValue(
+            ["red1", "red2", "red3", "red4", "red5", "red6" ],
+            forKey: "Carl"
+        )
         
-        content.likes.updateValue(10, forKey: "max")
-        content.likes.updateValue(100, forKey: "max2")
-        content.likes.updateValue(50, forKey: "max3")
-
         makeFriendsList()
         setUpSearchBar()
         

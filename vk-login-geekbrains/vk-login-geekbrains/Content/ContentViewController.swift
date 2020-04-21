@@ -103,7 +103,7 @@ class ContentViewController: UIViewController {
         switch gesture.direction {
         case .left:
             UIView.animateKeyframes(
-                withDuration: 1,
+                withDuration: 0.8,
                 delay: 0,
                 options: .beginFromCurrentState,
                 animations: {
@@ -128,8 +128,7 @@ class ContentViewController: UIViewController {
                                 scaleX: 0.8,
                                 y: 0.8
                             )
-
-                            self.midImageView.alpha = 0.8
+                            self.midImageView.alpha = 0.65
                     })
             }, completion:{ _ in
                 UIView.animate(
@@ -150,8 +149,8 @@ class ContentViewController: UIViewController {
                             dy: 0
                         )
                         self.midImageView.transform = .identity
+                        self.midImageView.alpha = 1
                         self.addSubviews()
-
                 })
             })
                 if self.midIndex == self.contentArray.count - 1 {
@@ -164,7 +163,7 @@ class ContentViewController: UIViewController {
 
         case .right:
             UIView.animateKeyframes(
-                withDuration: 1,
+                withDuration: 0.8,
                 delay: 0,
                 options: .beginFromCurrentState,
                 animations: {
@@ -180,7 +179,6 @@ class ContentViewController: UIViewController {
                                 dx: 100,
                                 dy: 0
                             )
-
                             self.rightImageView.frame = self.rightImageView.frame.offsetBy(
                                 dx: 100,
                                 dy: 0
@@ -189,7 +187,7 @@ class ContentViewController: UIViewController {
                                 scaleX: 0.8,
                                 y: 0.8
                             )
-                            self.midImageView.alpha = 0.8
+                            self.midImageView.alpha = 0.65
                     })
             }, completion:{ _ in
                 UIView.animate(
@@ -210,6 +208,7 @@ class ContentViewController: UIViewController {
                             dy: 0
                         )
                         self.midImageView.transform = .identity
+                        self.midImageView.alpha = 1
                         self.addSubviews()
                 })
             })

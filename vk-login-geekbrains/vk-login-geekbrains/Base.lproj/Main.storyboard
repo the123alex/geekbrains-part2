@@ -217,24 +217,25 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OneFriendCell" id="u2k-5k-rxE" customClass="OneFriendCell" customModule="vk_login_geekbrains" customModuleProvider="target">
-                                <rect key="frame" x="75.5" y="0.0" width="263" height="230"/>
+                                <rect key="frame" x="77" y="0.0" width="260" height="225"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wc7-9G-ZU2">
-                                    <rect key="frame" x="0.0" y="0.0" width="263" height="230"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="260" height="225"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i1a-WR-l25">
-                                            <rect key="frame" x="5" y="5" width="253" height="205"/>
+                                            <rect key="frame" x="5" y="5" width="250" height="200"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="200" id="0UW-wO-QqL"/>
-                                                <constraint firstAttribute="width" secondItem="i1a-WR-l25" secondAttribute="height" multiplier="1:1" id="8CW-b5-Ilx"/>
+                                                <constraint firstAttribute="height" priority="751" constant="200" id="0UW-wO-QqL"/>
+                                                <constraint firstAttribute="width" priority="751" constant="250" id="NQn-1P-cwG"/>
                                             </constraints>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xPG-2N-CKL" customClass="LikeControl" customModule="vk_login_geekbrains" customModuleProvider="target">
-                                            <rect key="frame" x="101.5" y="215" width="60" height="15"/>
+                                            <rect key="frame" x="100" y="210" width="60" height="10"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="Tia-81-eG1"/>
+                                                <constraint firstAttribute="height" priority="751" constant="10" id="jzt-QR-uYL"/>
                                             </constraints>
                                             <connections>
                                                 <action selector="likeButtonTapped:" destination="HXp-Re-bFB" eventType="touchUpInside" id="Aft-Lo-bAt"/>
@@ -242,21 +243,18 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="xPG-2N-CKL" firstAttribute="centerX" secondItem="wc7-9G-ZU2" secondAttribute="centerX" id="0gf-jB-EEg"/>
                                         <constraint firstItem="xPG-2N-CKL" firstAttribute="top" secondItem="i1a-WR-l25" secondAttribute="bottom" constant="5" id="1mf-4N-3A9"/>
                                         <constraint firstItem="i1a-WR-l25" firstAttribute="top" secondItem="wc7-9G-ZU2" secondAttribute="top" constant="5" id="Cb6-00-9Hw"/>
-                                        <constraint firstItem="i1a-WR-l25" firstAttribute="centerX" secondItem="wc7-9G-ZU2" secondAttribute="centerX" id="E2d-yX-Okq"/>
-                                        <constraint firstAttribute="bottom" secondItem="xPG-2N-CKL" secondAttribute="bottom" id="nr3-pP-Z62"/>
-                                        <constraint firstAttribute="bottom" secondItem="i1a-WR-l25" secondAttribute="bottom" constant="20" id="p3n-hg-pXU"/>
+                                        <constraint firstItem="i1a-WR-l25" firstAttribute="centerX" secondItem="wc7-9G-ZU2" secondAttribute="centerX" id="MRG-5O-oJo"/>
+                                        <constraint firstItem="xPG-2N-CKL" firstAttribute="centerX" secondItem="i1a-WR-l25" secondAttribute="centerX" id="RNO-H2-aAE"/>
+                                        <constraint firstAttribute="bottom" secondItem="xPG-2N-CKL" secondAttribute="bottom" constant="5" id="nr3-pP-Z62"/>
                                         <constraint firstItem="i1a-WR-l25" firstAttribute="leading" secondItem="wc7-9G-ZU2" secondAttribute="leading" constant="5" id="ty1-1z-IVA"/>
-                                        <constraint firstAttribute="trailing" secondItem="i1a-WR-l25" secondAttribute="trailing" constant="5" id="zLb-KN-WZy"/>
                                     </constraints>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="263" height="230"/>
                                 <connections>
                                     <outlet property="friendImageCell" destination="i1a-WR-l25" id="zTe-4A-pfK"/>
                                     <outlet property="likesView" destination="xPG-2N-CKL" id="6H2-ZR-RyR"/>
-                                    <segue destination="p3g-Pp-Rjd" kind="show" identifier="imageChoosed" id="raR-Ap-cLV"/>
+                                    <segue destination="p3g-Pp-Rjd" kind="show" identifier="imageChoosed" id="Lb9-27-PdX"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -274,7 +272,7 @@
         <!--Content View Controller-->
         <scene sceneID="O9A-UK-fTd">
             <objects>
-                <viewController storyboardIdentifier="ContentViewController" id="p3g-Pp-Rjd" customClass="ContentViewController" customModule="vk_login_geekbrains" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentViewController" modalTransitionStyle="flipHorizontal" id="p3g-Pp-Rjd" customClass="ContentViewController" customModule="vk_login_geekbrains" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wbt-G2-HTv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
