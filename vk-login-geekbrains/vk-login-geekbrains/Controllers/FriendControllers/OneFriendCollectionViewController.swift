@@ -68,4 +68,6 @@ class OneFriendCollectionViewController: UICollectionViewController {
     @IBAction func likeButtonTapped(_ sender: Any) {
     }
 
+    @IBAction func unwind( _ seg: UIStoryboardSegue) {
+    }
 }

@@ -294,9 +294,11 @@
                     <navigationItem key="navigationItem" id="heZ-oN-9gc"/>
                     <connections>
                         <outlet property="backView" destination="qQk-yH-82S" id="F2l-LC-b6Z"/>
+                        <segue destination="sbS-oj-dXN" kind="unwind" identifier="imageChoosedUnwind" unwindAction="unwind:" id="jaj-PS-ERI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dcw-fX-cva" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="sbS-oj-dXN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4673" y="-158"/>
         </scene>

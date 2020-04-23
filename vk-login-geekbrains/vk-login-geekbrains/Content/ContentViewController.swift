@@ -34,6 +34,10 @@ class ContentViewController: UIViewController {
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handSwipe))
         rightSwipe.direction = .right
         self.midImageView.superview?.addGestureRecognizer(rightSwipe)
+
+        let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handSwipe))
+        downSwipe.direction = .down
+        self.midImageView.superview?.addGestureRecognizer(downSwipe)
     }
 
 //add and reload images
@@ -219,9 +223,17 @@ class ContentViewController: UIViewController {
                 midIndex -= 1
                 setIndex(content: contentArray)
             }
+        case .down:
+            self.backToCollection(self)
+            //прозрачность приходится менять, иначе при возврате остаётся тень картинки
+            self.leftImageView.alpha = 0
         default:
             return
         }
+    }
+
+    @IBAction func backToCollection(_ sender: Any) {
+        performSegue(withIdentifier: "imageChoosedUnwind", sender: self)
     }
 }
 
