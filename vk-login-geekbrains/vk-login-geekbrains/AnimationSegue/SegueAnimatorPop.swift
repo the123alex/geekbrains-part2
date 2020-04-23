@@ -47,7 +47,7 @@ class SegueAnimatorPop: NSObject, UIViewControllerAnimatedTransitioning {
             delay: 0,
             options: .curveEaseInOut,
             animations: {
-                source.view.frame = sourceViewTargetFrame
+              //  source.view.frame = sourceViewTargetFrame
                 source.view.transform = source.view.transform.rotated(by: .pi * 1.5)
 
                 destination.view.transform = .identity
