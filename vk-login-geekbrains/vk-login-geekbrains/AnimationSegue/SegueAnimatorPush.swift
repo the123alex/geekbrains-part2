@@ -38,8 +38,6 @@ class SegueAnimatorPush: NSObject, UIViewControllerAnimatedTransitioning {
         destination.view.frame = source.view.frame
         destination.view.frame.origin.x = containerViewFrame.size.width
         destination.view.frame.origin.y = 0
-//        destination.view.frame.origin.x = containerViewFrame.size.width
-//        destination.view.frame.origin.y = 0
     //    destination.view.layer.anchorPoint = .zero
         source.view.layer.anchorPoint = .zero
       //  destination.view.layer.position = .zero
