@@ -225,8 +225,6 @@ class ContentViewController: UIViewController {
             }
         case .down:
             self.backToCollection(self)
-            //прозрачность приходится менять, иначе при возврате остаётся тень левой картинки
-            self.leftImageView.alpha = 0
         default:
             return
         }
@@ -234,6 +232,9 @@ class ContentViewController: UIViewController {
 
     @IBAction func backToCollection(_ sender: Any) {
         performSegue(withIdentifier: "imageChoosedUnwind", sender: self)
+        //прозрачность приходится менять, иначе при возврате остаётся тень левой картинки
+        self.leftImageView.alpha = 0
+        self.rightImageView.alpha = 0
     }
 }
 
