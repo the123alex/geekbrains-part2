@@ -27,7 +27,7 @@ class SegueAnimatorPop: NSObject, UIViewControllerAnimatedTransitioning {
         let containerViewFrame = transitionContext.containerView.frame
         let sourceViewTargetFrame = CGRect(
             x: containerViewFrame.size.width,
-            y: -containerViewFrame.size.height,
+            y: 0,
             width: source.view.frame.size.width,
             height: source.view.frame.size.height
         )
@@ -47,13 +47,11 @@ class SegueAnimatorPop: NSObject, UIViewControllerAnimatedTransitioning {
             delay: 0,
             options: .curveEaseInOut,
             animations: {
-              //  source.view.frame = sourceViewTargetFrame
+                source.view.frame = sourceViewTargetFrame
                 source.view.transform = source.view.transform.rotated(by: .pi * 1.5)
 
                 destination.view.transform = .identity
-
                 destination.view.frame = destinationViewTargetFrame
-
 
         }) { finished in
             transitionContext.completeTransition(finished)
