@@ -183,7 +183,7 @@
                                     <outlet property="friendImageCell" destination="NLd-Q5-x9w" id="1Ug-c8-APo"/>
                                     <outlet property="friendNameCell" destination="1jl-Yo-1XY" id="KaJ-Hj-upk"/>
                                     <outlet property="viewForShadow" destination="Hvr-2C-yOl" id="PEF-px-Xqi"/>
-                                    <segue destination="HXp-Re-bFB" kind="show" identifier="Friend segue" id="9Qc-a5-cpI"/>
+                                    <segue destination="HXp-Re-bFB" kind="show" identifier="" id="9Qc-a5-cpI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -594,7 +594,7 @@
         <!--Friends-->
         <scene sceneID="BDj-Yx-RyB">
             <objects>
-                <navigationController modalPresentationStyle="currentContext" id="EwY-RD-JJU" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="currentContext" id="EwY-RD-JJU" customClass="NavigationController" customModule="vk_login_geekbrains" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" id="46U-Rq-g5q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e61-aF-cR5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>

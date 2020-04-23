@@ -23,7 +23,6 @@ extension UIControl {
                         element.setTitleColor(.black, for: .normal)
 
             })
-        //elementCount -= 1
             return !resultTrying
         } else {
             UIView.transition(with: element,
@@ -34,7 +33,6 @@ extension UIControl {
                         element.setTitleColor(.red, for: .normal)
 
             })
-        //elementCount -= 1
             return !resultTrying
         }
     }

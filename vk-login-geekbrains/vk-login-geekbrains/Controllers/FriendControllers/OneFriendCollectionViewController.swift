@@ -55,14 +55,10 @@ class OneFriendCollectionViewController: UICollectionViewController {
             print(111111)
             let destinationViewController = segue.destination as? ContentViewController
             destinationViewController?.contentArray = friendContent!.images[friendName!] ?? []
-                  // let indexPath = collectionView.indexPathsForSelectedItems
             destinationViewController?.midIndex = indexPath[0][0]
             print(indexPath[0][0])
 
         }
-
-         //   destinationViewController?.friendName = friend.name
-
 
     }
     @IBAction func likeButtonTapped(_ sender: Any) {

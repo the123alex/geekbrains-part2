@@ -158,8 +158,9 @@ class AllFriendsTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier! == "Friend segue",
-            let indexPath = tableView.indexPathForSelectedRow {
+
+      //  if segue.identifier! == "Friend segue",
+        if let indexPath = tableView.indexPathForSelectedRow {
 
             if searching {
                 guard let friend = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else {
@@ -260,3 +261,4 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
         friendSearchBar.delegate = self
     }
 }
+

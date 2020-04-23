@@ -225,7 +225,7 @@ class ContentViewController: UIViewController {
             }
         case .down:
             self.backToCollection(self)
-            //прозрачность приходится менять, иначе при возврате остаётся тень картинки
+            //прозрачность приходится менять, иначе при возврате остаётся тень левой картинки
             self.leftImageView.alpha = 0
         default:
             return
