@@ -34,16 +34,11 @@ class SegueAnimatorPush: NSObject, UIViewControllerAnimatedTransitioning {
         let destinationViewTargetFrame = transitionContext.containerView.frame
         transitionContext.containerView.addSubview(destination.view)
 
-        destination.view.frame = CGRect(
-            x: containerViewFrame.size.width,
-            y: 0,
-            width: source.view.frame.size.width,
-            height:  source.view.frame.size.height
-        )
-       destination.view.transform = destination.view.transform.rotated(by: .pi*1.5)
+        destination.view.frame = source.view.frame
+        destination.view.transform = destination.view.transform.rotated(by: .pi * 1.5)
 
         destination.view.frame.origin.x = containerViewFrame.size.width
-        destination.view.frame.origin.y = 20
+        destination.view.frame.origin.y = 0
 
         UIView
             .animate(
@@ -53,9 +48,9 @@ class SegueAnimatorPush: NSObject, UIViewControllerAnimatedTransitioning {
             animations: {
 
                 source.view.frame = sourceViewTargetFrame
-                source.view.transform = source.view.transform.rotated(by: .pi*0.5)
+                source.view.transform = source.view.transform.rotated(by: .pi * 0.5)
 
-                destination.view.transform = destination.view.transform.rotated(by: .pi*0.5)
+                destination.view.transform = destination.view.transform.rotated(by: .pi * 0.5)
 
                 destination.view.frame = destinationViewTargetFrame
 
