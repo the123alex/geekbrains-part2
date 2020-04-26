@@ -44,11 +44,23 @@ class AllFriendsTableViewController: UITableViewController {
         super.viewDidLoad()
         content.images.updateValue(["max", "max2", "max3" ], forKey: "Max")
         content.images.updateValue(["boris1", "boris2"], forKey: "Boris")
+        content.images.updateValue(
+            ["red1", "red2", "red3", "red4", "red5", "red6" ],
+            forKey: "Anna"
+        )
+        content.images.updateValue(
+            ["red1", "red2", "red3", "red4", "red5", "red6" ],
+            forKey: "Ivan"
+        )
+        content.images.updateValue(
+            ["red1", "red2", "red3", "red4", "red5", "red6" ],
+            forKey: "Bob"
+        )
+        content.images.updateValue(
+            ["red1", "red2", "red3", "red4", "red5", "red6" ],
+            forKey: "Carl"
+        )
         
-        content.likes.updateValue(10, forKey: "max")
-        content.likes.updateValue(100, forKey: "max2")
-        content.likes.updateValue(50, forKey: "max3")
-
         makeFriendsList()
         setUpSearchBar()
         
@@ -96,7 +108,7 @@ class AllFriendsTableViewController: UITableViewController {
         } else {
             return Array(Set(friendsNamesFirstLetter.compactMap{$0.first?.uppercased()})).sorted()
         }
-        }
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendsTableCell.self), for: indexPath) as? FriendsTableCell else {
@@ -146,8 +158,9 @@ class AllFriendsTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier! == "Friend segue",
-            let indexPath = tableView.indexPathForSelectedRow {
+
+      //  if segue.identifier! == "Friend segue",
+        if let indexPath = tableView.indexPathForSelectedRow {
 
             if searching {
                 guard let friend = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else {
@@ -248,3 +261,4 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
         friendSearchBar.delegate = self
     }
 }
+
