@@ -107,7 +107,7 @@ class ContentViewController: UIViewController {
         switch gesture.direction {
         case .left:
             UIView.animateKeyframes(
-                withDuration: 0.8,
+                withDuration: 0.3,
                 delay: 0,
                 options: .beginFromCurrentState,
                 animations: {
@@ -136,7 +136,7 @@ class ContentViewController: UIViewController {
                     })
             }, completion:{ _ in
                 UIView.animate(
-                    withDuration: 0.5,
+                    withDuration: 0.3,
                     delay: 0,
                     options: .curveEaseInOut,
                     animations: {
@@ -167,7 +167,7 @@ class ContentViewController: UIViewController {
 
         case .right:
             UIView.animateKeyframes(
-                withDuration: 0.8,
+                withDuration: 0.3,
                 delay: 0,
                 options: .beginFromCurrentState,
                 animations: {
@@ -195,7 +195,7 @@ class ContentViewController: UIViewController {
                     })
             }, completion:{ _ in
                 UIView.animate(
-                    withDuration: 0.5,
+                    withDuration: 0.3,
                     delay: 0,
                     options: .curveEaseInOut,
                     animations: {
