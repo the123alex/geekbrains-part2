@@ -594,7 +594,7 @@
         <!--Friends-->
         <scene sceneID="BDj-Yx-RyB">
             <objects>
-                <navigationController modalPresentationStyle="currentContext" id="EwY-RD-JJU" customClass="NavigationController" customModule="vk_login_geekbrains" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="currentContext" id="EwY-RD-JJU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" id="46U-Rq-g5q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e61-aF-cR5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>

@@ -87,6 +87,8 @@ class ViewController: UIViewController {
             let password = passwordInput.text else { return false }
 
         if login == "admin" && password == "admin1" {
+            Session.instance.token = login
+            Session.instance.id = Int.random(in: 1000...9999)
             return true
         } else {
             return false

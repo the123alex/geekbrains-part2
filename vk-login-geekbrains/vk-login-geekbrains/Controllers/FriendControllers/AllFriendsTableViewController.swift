@@ -42,6 +42,8 @@ class AllFriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Friends of \(Session.instance.token), id: \(Session.instance.id)"
+        
         content.images.updateValue(["max", "max2", "max3" ], forKey: "Max")
         content.images.updateValue(["boris1", "boris2"], forKey: "Boris")
         content.images.updateValue(
