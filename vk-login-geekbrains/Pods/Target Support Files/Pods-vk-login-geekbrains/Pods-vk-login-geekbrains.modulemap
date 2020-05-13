@@ -1,0 +1,6 @@
+framework module Pods_vk_login_geekbrains {
+  umbrella header "Pods-vk-login-geekbrains-umbrella.h"
+
+  export *
+  module * { export * }
+}
