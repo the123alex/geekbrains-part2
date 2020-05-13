@@ -17,7 +17,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         }
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,9 +38,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         webview.load(request)
 
     }
-//}
 
-//extension ViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
 
         guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment  else {
@@ -60,9 +57,16 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                 return dict
         }
 
-        let token = params["access_token"]
+        let token = params["access_token"]!
+        let id = params["user_id"]!
 
-        Session.instance.token = token!
+        Session.instance.id = Int(id) ?? 0
+
+        Session.instance.token = token
+
+        //делаю это, иначе уже со второго раза ничего не отображается на экране, он просто белый
+        let testUrl = "https://vk.com/id" + String(Session.instance.id)
+        webview.load(URLRequest(url: URL(string: testUrl)!))
 
         let apiFriends = "https://api.vk.com/method/friends.get?v=5.52&access_token=" + Session.instance.token
 
@@ -80,7 +84,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     }
 }
 
-func searchGroup(title: String) {
+ private func searchGroup(title: String) {
     let baseUrl = "https://api.vk.com"
     let path = "/method/groups.search"
 
@@ -91,7 +95,7 @@ func searchGroup(title: String) {
     ]
 
     let searchUrl = baseUrl + path
-    
+
     AF.request(
         searchUrl,
         method: .get,
