@@ -7,16 +7,29 @@
 //
 
 import Foundation
-struct Users: Codable {
-   let response: Response
+struct ResultUser: Codable {
+   let response: ResponseUser
 }
 
-struct Response: Codable {
+struct ResponseUser: Codable {
     let count: Int
-    let items: [Items]
+    let items: [ItemsUser]
 }
 
-struct Items: Codable {
+struct ItemsUser: Codable {
     let first_name: String
     let last_name: String
+}
+
+struct ResultGroup: Codable {
+    let response: ResponseGroup
+}
+
+struct ResponseGroup: Codable {
+    let count: Int
+    let items: [ItemsGroup]
+}
+
+struct ItemsGroup: Codable {
+    let name: String
 }

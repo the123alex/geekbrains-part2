@@ -10,12 +10,10 @@ import UIKit
 
 class Group {
     var title: String
-    let countSubscribers: UInt
     var image: UIImage
 
-    init(title: String, countSubscribers: UInt, image: UIImage) {
+    init(title: String, image: UIImage) {
         self.title = title
-        self.countSubscribers = countSubscribers
         self.image = image
     }
 }

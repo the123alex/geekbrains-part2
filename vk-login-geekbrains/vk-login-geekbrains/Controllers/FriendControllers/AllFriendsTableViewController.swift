@@ -223,7 +223,7 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
             do {
                 print(response)
 
-                let users = try JSONDecoder().decode(Users.self, from: data)
+                let users = try JSONDecoder().decode(ResultUser.self, from: data)
                 for index in 0..<users.response.count{
                     let firstAndLast = "\(users.response.items[index].first_name) \(users.response.items[index].last_name)"
 

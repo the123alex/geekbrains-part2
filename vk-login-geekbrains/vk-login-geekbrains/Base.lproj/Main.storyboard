@@ -340,7 +340,7 @@
         <!--My Groups-->
         <scene sceneID="3Ze-AT-ngu">
             <objects>
-                <tableViewController storyboardIdentifier="FavouriteGroupsTableController" modalPresentationStyle="fullScreen" id="0YN-Gk-ZZC" customClass="FavouriteGroupsTableController" customModule="vk_login_geekbrains" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FavouriteGroupsTableController" modalPresentationStyle="fullScreen" id="0YN-Gk-ZZC" customClass="AllGroupsTableController" customModule="vk_login_geekbrains" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rzp-4K-MbM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

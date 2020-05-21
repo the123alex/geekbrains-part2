@@ -5,25 +5,28 @@
 //  Created by Aleksey on 02.04.2020.
 //  Copyright © 2020 Aleksey Mikhlev. All rights reserved.
 //
-
+import Alamofire
 import UIKit
 
 class AllGroupsTableController: UITableViewController {
 
     @IBOutlet weak var groupSearch: UISearchBar!
 
-    var allGroups = [
-        Group(title: "First group", countSubscribers: 24, image: UIImage(named: "First group")!),
-        Group(title: "Second group", countSubscribers: 100, image: UIImage(named: "Second group")!),
-        Group(title: "Third group", countSubscribers: 200_000, image: UIImage(named: "Third group")!),
-        Group(title: "Fourth group", countSubscribers: 50_000, image: UIImage(named: "Fourth group")!),
-    ]
+    var allGroups = [Group]()
+
     var filteredGroups = [Group]()
     var searching = false
     var emptyResult = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        getGroupsList() { [weak self] allGroups in
+            // сохраняем полученные данные в массиве, чтобы коллекция могла получить к ним доступ
+            self?.allGroups = allGroups
+            // коллекция должна прочитать новые данные
+            self?.tableView?.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -34,15 +37,8 @@ class AllGroupsTableController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if emptyResult {
-            return 1
-        }
-        if searching {
-            return filteredGroups.count
-        } else {
+
             return allGroups.count
-        }
     }
 
 
@@ -51,22 +47,8 @@ class AllGroupsTableController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GroupCell.self), for: indexPath) as? GroupCell else {
             preconditionFailure("Fail")
         }
-        if emptyResult {
-            tableView.resignFirstResponder()
-            return cell
-        }
-
-        if searching {
-            let groups = filteredGroups[indexPath.row]
-            cell.groupTitleCell?.text = groups.title
-            cell.groupImageCell?.image = groups.image
-            return cell
-        } else {
-            let groups = allGroups[indexPath.row]
-            cell.groupTitleCell?.text = groups.title
-            cell.groupImageCell?.image = groups.image
-            return cell
-        }
+        cell.groupTitleCell.text = allGroups[indexPath.row].title
+        return cell
     }
 }
 
@@ -96,5 +78,39 @@ extension AllGroupsTableController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
+    }
+}
+
+func getGroupsList(completion: @escaping ([Group]) -> Void) {
+    let baseUrl = "https://api.vk.com"
+    let path = "/method/groups.get"
+
+    let parameters: Parameters = [
+        "extended": "1",
+        "v": "5.52",
+        "access_token": Session.instance.token
+    ]
+
+    let searchUrl = baseUrl + path
+
+    var some = [Group]()
+    AF.request(searchUrl,
+               method: .get,
+               parameters: parameters
+    ).responseData { response in
+            guard let data = response.value else { return }
+            do {
+                print(response)
+
+                let groups = try JSONDecoder().decode(ResultGroup.self, from: data)
+                for index in 0..<groups.response.count{
+                    let firstAndLast = groups.response.items[index].name
+
+                    some.append(Group(title: firstAndLast, image: UIImage(named: "default")!))
+                    completion(some)
+                }
+            } catch {
+                print(error)
+            }
     }
 }
