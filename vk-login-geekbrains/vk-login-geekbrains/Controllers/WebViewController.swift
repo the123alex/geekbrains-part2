@@ -74,7 +74,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
         Session.instance.token = token
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "AllFriendsTableViewController") as! AllFriendsTableViewController
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "TapBar") as! UITabBarController
         self.present(newViewController, animated: true, completion: nil)
         newViewController.modalPresentationStyle = .fullScreen
 

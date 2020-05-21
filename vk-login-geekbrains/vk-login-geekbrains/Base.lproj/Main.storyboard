@@ -646,7 +646,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="dmr-Sr-Io3">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="xOA-WT-wuF" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TapBar" modalPresentationStyle="fullScreen" id="xOA-WT-wuF" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="GzG-78-s1a"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xM2-5u-GJT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
