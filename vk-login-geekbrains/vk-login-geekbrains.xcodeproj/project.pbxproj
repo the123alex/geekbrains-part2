@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,8 @@
 		C7978A052435EA65006525F8 /* FavouriteGroupsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7978A042435EA65006525F8 /* FavouriteGroupsTableController.swift */; };
 		C7978A072435EC82006525F8 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7978A062435EC82006525F8 /* GroupCell.swift */; };
 		C79FD5EF2436086B003D5204 /* FriendsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79FD5EE2436086B003D5204 /* FriendsTableCell.swift */; };
+		C7AA787D24767B260060DE4C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7AA787C24767B260060DE4C /* WebKit.framework */; };
+		C7AA788024767E360060DE4C /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AA787F24767E360060DE4C /* Codable.swift */; };
 		C7BB0BF024461A4C007B6EDB /* NewsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB0BEF24461A4C007B6EDB /* NewsTableCell.swift */; };
 		C7BB0BF224461A7A007B6EDB /* NewsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB0BF124461A7A007B6EDB /* NewsTableController.swift */; };
 		C7BB0BF424464E3C007B6EDB /* CommentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB0BF324464E3C007B6EDB /* CommentControl.swift */; };
@@ -70,6 +72,8 @@
 		C7978A042435EA65006525F8 /* FavouriteGroupsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteGroupsTableController.swift; sourceTree = "<group>"; };
 		C7978A062435EC82006525F8 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		C79FD5EE2436086B003D5204 /* FriendsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsTableCell.swift; sourceTree = "<group>"; };
+		C7AA787C24767B260060DE4C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C7AA787F24767E360060DE4C /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
 		C7BB0BEF24461A4C007B6EDB /* NewsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableCell.swift; sourceTree = "<group>"; };
 		C7BB0BF124461A7A007B6EDB /* NewsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableController.swift; sourceTree = "<group>"; };
 		C7BB0BF324464E3C007B6EDB /* CommentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentControl.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7AA787D24767B260060DE4C /* WebKit.framework in Frameworks */,
 				5C160F454BFAD007E5DD9048 /* Pods_vk_login_geekbrains.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +102,7 @@
 		2ECF501955DBD85BF4C90DAC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C7AA787C24767B260060DE4C /* WebKit.framework */,
 				61005D0FB9E650A420EA80B2 /* Pods_vk_login_geekbrains.framework */,
 			);
 			name = Frameworks;
@@ -152,6 +158,7 @@
 		C76BCB0E2433327E00492952 /* vk-login-geekbrains */ = {
 			isa = PBXGroup;
 			children = (
+				C7AA787E24767E210060DE4C /* Codable */,
 				C76BCB0F2433327E00492952 /* AppDelegate.swift */,
 				C76BCB112433327E00492952 /* SceneDelegate.swift */,
 				C76BCB152433327E00492952 /* Main.storyboard */,
@@ -222,6 +229,14 @@
 			path = GroupControllers;
 			sourceTree = "<group>";
 		};
+		C7AA787E24767E210060DE4C /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				C7AA787F24767E360060DE4C /* Codable.swift */,
+			);
+			path = Codable;
+			sourceTree = "<group>";
+		};
 		C7BB0BEE24461A1A007B6EDB /* NewsControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,7 +277,6 @@
 				3202C359CA693FFB85EE3CF9 /* Pods-vk-login-geekbrains.debug.xcconfig */,
 				AABBCE19734689C1221AF8F7 /* Pods-vk-login-geekbrains.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -389,6 +403,7 @@
 				C7BB0BF024461A4C007B6EDB /* NewsTableCell.swift in Sources */,
 				C76BCB142433327E00492952 /* ViewController.swift in Sources */,
 				C76BCB292433546600492952 /* AllFriendsTableViewController.swift in Sources */,
+				C7AA788024767E360060DE4C /* Codable.swift in Sources */,
 				C7978A032435E9F5006525F8 /* AllGroupsTableController.swift in Sources */,
 				C7BB0BF824464F01007B6EDB /* ViewsControl.swift in Sources */,
 				C76BCB102433327E00492952 /* AppDelegate.swift in Sources */,

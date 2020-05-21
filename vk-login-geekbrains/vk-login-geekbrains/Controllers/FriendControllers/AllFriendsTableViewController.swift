@@ -5,27 +5,12 @@
 //  Created by Aleksey on 31.03.2020.
 //  Copyright © 2020 Aleksey Mikhlev. All rights reserved.
 //
-
+import Alamofire
 import UIKit
 
 class AllFriendsTableViewController: UITableViewController {
     @IBOutlet weak var friendSearchBar: UISearchBar!
-
-    var someFriends = [
-        User(name: "Boris", age: 22, image: UIImage(named: "default")!),
-        User(name: "Anna", age: 44, image: UIImage(named: "default")!),
-        User(name: "Ivan", age: 32, image: UIImage(named: "default")!),
-        User(name: "Bob", age: 32, image: UIImage(named: "default")!),
-        User(name: "Carl", age: 32, image: UIImage(named: "default")!),
-        User(name: "Margaret", age: 32, image: UIImage(named: "default")!),
-        User(name: "Cris", age: 32, image: UIImage(named: "default")!),
-        User(name: "Zorro", age: 32, image: UIImage(named: "default")!),
-        User(name: "Luke", age: 32, image: UIImage(named: "default")!),
-        User(name: "Steven", age: 32, image: UIImage(named: "default")!),
-        User(name: "Steven", age: 32, image: UIImage(named: "default")!),
-        User(name: "Max", age: 32, image: UIImage(named: "default")!),
-        User(name: "Mary", age: 32, image: UIImage(named: "default")!)
-    ]
+    var someFriends = [User]()
 
     var content: Content = Content(images: [:], likes: [:])
     var filteredFriends = [User]()
@@ -42,8 +27,18 @@ class AllFriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        getFriendList() { [weak self] someFriends in
+            // сохраняем полученные данные в массиве, чтобы коллекция могла получить к ним доступ
+            self?.someFriends = someFriends
+            // коллекция должна прочитать новые данные
+            self?.makeFriendsList()
+            self?.setUpSearchBar()
+            self?.tableView?.reloadData()
+        }
+
         navigationItem.title = "Friends of \(Session.instance.token), id: \(Session.instance.id)"
-        
+
         content.images.updateValue(["max", "max2", "max3" ], forKey: "Max")
         content.images.updateValue(["boris1", "boris2"], forKey: "Boris")
         content.images.updateValue(
@@ -62,46 +57,18 @@ class AllFriendsTableViewController: UITableViewController {
             ["red1", "red2", "red3", "red4", "red5", "red6" ],
             forKey: "Carl"
         )
-        
-        makeFriendsList()
-        setUpSearchBar()
-        
+
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if emptyResult {
-            return 1
-        }
-        if searching {
-            return searchFriendDict.keys.count
-        } else {
-            return dictFriends.keys.count
-        }
+        1
     }
 
     override func tableView
         (_ tableView: UITableView,
          numberOfRowsInSection section: Int
     ) -> Int {
-        if emptyResult {
-            return 1
-        }
-        if searching {
-            return searchFriendDict[String(friendSearch[section].first!)]!.count
-            } else {
-            return dictFriends[friendsNamesFirstLetter[section]]!.count
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if emptyResult {
-            return nil
-        }
-        if searching {
-            return friendSearch[section].first?.uppercased()
-        } else {
-        return friendsNamesFirstLetter[section].first?.uppercased()
-        }
+        return someFriends.count
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -116,17 +83,7 @@ class AllFriendsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendsTableCell.self), for: indexPath) as? FriendsTableCell else {
             preconditionFailure("Fail")
         }
-        if emptyResult {
-            tableView.reloadData()
-            return cell
-        }
-
-        if searching {
-            
-            guard let friends = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else
-                {
-                preconditionFailure("Fail")
-            }
+         let friends = someFriends[indexPath.row]
 
             cell.friendNameCell?.text = friends.name
             cell.friendImageCell?.image = friends.image
@@ -137,31 +94,12 @@ class AllFriendsTableViewController: UITableViewController {
 
             if UIImage(named: friends.name) != nil {
                 cell.friendImageCell.image = UIImage(named: friends.name)
-            }
-
-        } else {
-
-            guard let friends = dictFriends[friendsNamesFirstLetter[indexPath.section]]?[indexPath.row] else {
-                preconditionFailure("Fail")
-            }
-
-            cell.friendNameCell?.text = friends.name
-            cell.friendImageCell?.image = friends.image
-
-            cell.friendImageCell?.asCircle()
-            cell.viewForShadow.asCircle()
-            cell.viewForShadow?.makeShadow()
-
-            if UIImage(named: friends.name) != nil {
-                cell.friendImageCell.image = UIImage(named: friends.name)
-            }
         }
         return cell
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-      //  if segue.identifier! == "Friend segue",
         if let indexPath = tableView.indexPathForSelectedRow {
 
             if searching {
@@ -199,7 +137,6 @@ class AllFriendsTableViewController: UITableViewController {
 //Создание списка друзей
 extension AllFriendsTableViewController {
     private func makeFriendsList() {
-
         for element in someFriends {
             friendsNames.append(element.name)
             friendsNamesFirstLetter.append(String(element.name.first!))
@@ -258,9 +195,43 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
     }
-    
+
     func setUpSearchBar() {
         friendSearchBar.delegate = self
     }
 }
 
+//получение списка друзей
+func getFriendList(completion: @escaping ([User]) -> Void) {
+    let baseUrl = "https://api.vk.com"
+    let path = "/method/friends.get"
+
+    let parameters: Parameters = [
+        "fields": "crop_photo",
+        "v": "5.52",
+        "access_token": Session.instance.token
+    ]
+
+    let searchUrl = baseUrl + path
+
+    var some = [User]()
+    AF.request(searchUrl,
+               method: .get,
+               parameters: parameters
+    ).responseData { response in
+            guard let data = response.value else { return }
+            do {
+                print(response)
+
+                let users = try JSONDecoder().decode(Users.self, from: data)
+                for index in 0..<users.response.count{
+                    let firstAndLast = "\(users.response.items[index].first_name) \(users.response.items[index].last_name)"
+
+                    some.append(User(name: firstAndLast, image: UIImage(named: "default")!))
+                    completion(some)
+                }
+            } catch {
+                print(error)
+            }
+    }
+}

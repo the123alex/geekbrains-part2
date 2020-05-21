@@ -9,13 +9,11 @@
 import UIKit
 
 class User {
-    let name: String
-    let age: UInt
+    var name: String
     let image: UIImage
 
-    init(name: String, age: UInt, image: UIImage) {
+    init(name: String, image: UIImage) {
         self.name = name
-        self.age = age
         self.image = image
     }
 }

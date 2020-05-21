@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wqe-7z-iDj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wqe-7z-iDj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,7 +26,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gt8-3l-gWj">
-                                        <rect key="frame" x="160" y="521" width="54" height="54"/>
+                                        <rect key="frame" x="160" y="522" width="54" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gt8-3l-gWj" secondAttribute="height" multiplier="1:1" id="o9i-sZ-jkT"/>
                                         </constraints>
@@ -44,23 +44,23 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0I2-aB-u1F">
-                                        <rect key="frame" x="129" y="371.5" width="116.5" height="33.5"/>
+                                        <rect key="frame" x="129" y="372.5" width="116.5" height="33.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="admin" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v64-Lg-HZ7">
-                                        <rect key="frame" x="129" y="285.5" width="116.5" height="36"/>
+                                        <rect key="frame" x="129" y="285.5" width="116.5" height="37"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="admin1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NGc-Ff-cxk">
-                                        <rect key="frame" x="129" y="415" width="116.5" height="36"/>
+                                        <rect key="frame" x="129" y="416" width="116.5" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WrF-wR-fit" customClass="LoadingView" customModule="vk_login_geekbrains" customModuleProvider="target">
-                                        <rect key="frame" x="87" y="605" width="200" height="50"/>
+                                        <rect key="frame" x="87" y="606" width="200" height="50"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="a7E-3i-Sqp"/>
@@ -142,11 +142,12 @@
                     </view>
                     <connections>
                         <outlet property="webview" destination="ewf-VE-xvJ" id="SgU-te-zsZ"/>
+                        <segue destination="xOA-WT-wuF" kind="show" identifier="webSegue" id="Zva-4g-2iH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o1f-Ni-xl7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="869"/>
+            <point key="canvasLocation" x="83" y="837"/>
         </scene>
         <!--Friends-->
         <scene sceneID="hRa-pf-52C">
@@ -663,8 +664,11 @@
             <point key="canvasLocation" x="990" y="115"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Zva-4g-2iH"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="catalina" width="2908" height="1734"/>
-        <image name="folder.fill" catalog="system" width="64" height="46"/>
+        <image name="folder.fill" catalog="system" width="128" height="95"/>
     </resources>
 </document>

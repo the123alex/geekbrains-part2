@@ -5,6 +5,13 @@
 //  Created by Aleksey on 13.05.2020.
 //  Copyright © 2020 Aleksey Mikhlev. All rights reserved.
 //
+//
+//  WebViewController.swift
+//  vk-login-geekbrains
+//
+//  Created by Aleksey on 13.05.2020.
+//  Copyright © 2020 Aleksey Mikhlev. All rights reserved.
+//
 import Alamofire
 import UIKit
 import WebKit
@@ -16,7 +23,10 @@ class WebViewController: UIViewController, WKNavigationDelegate {
             webview.navigationDelegate = self
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: self)
 
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,12 +73,12 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         Session.instance.id = Int(id) ?? 0
 
         Session.instance.token = token
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "AllFriendsTableViewController") as! AllFriendsTableViewController
+        self.present(newViewController, animated: true, completion: nil)
+        newViewController.modalPresentationStyle = .fullScreen
 
-        //делаю это, иначе уже со второго раза ничего не отображается на экране, он просто белый
-        let testUrl = "https://vk.com/id" + String(Session.instance.id)
-        webview.load(URLRequest(url: URL(string: testUrl)!))
-
-        let apiFriends = "https://api.vk.com/method/friends.get?v=5.52&access_token=" + Session.instance.token
+        print(Session.instance.token)
 
         let apiPhotos = "https://api.vk.com/method/photos.getAll?v=5.52&access_token=" + Session.instance.token
 
@@ -76,9 +86,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
         searchGroup(title: "Polotno")
 
-//        AF.request(apiFriends).responseJSON { response in
-//            print(response.value)
-//        }
 
         decisionHandler(.cancel)
     }
@@ -101,6 +108,23 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         method: .get,
         parameters: parameters
     ).responseJSON { repsonse in
-        print(repsonse.value)
+      //  print(repsonse.value)
     }
+}
+
+func showSecondViewController(view: ViewController) {
+//    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//    let secondVC = storyboard.instantiateViewController(identifier: "SecondViewController")
+//    self.shouldPerformSegue(secondVC)
+//    show(secondVC, sender: self)
+   // let viewC = ViewController()
+//   // viewC.loginButtonPressed(AnyObject.self)
+//    WebViewController.prepare()
+//    let nav = NavigationController()
+//    nav.shouldPerformSegue(withIdentifier: "webSegue", sender: AnyObject.self)
+//    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//    let newViewController = storyBoard.instantiateViewController(withIdentifier: "newViewController") as! AllFriendsTableViewController
+//            self.present(newViewController, animated: true, completion: nil)
+//    newViewController.modalPresentationStyle = .fullScreen
+
 }
