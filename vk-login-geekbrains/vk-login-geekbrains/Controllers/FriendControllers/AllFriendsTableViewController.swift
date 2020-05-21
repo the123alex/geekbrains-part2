@@ -32,7 +32,7 @@ class AllFriendsTableViewController: UITableViewController {
             // сохраняем полученные данные в массиве, чтобы коллекция могла получить к ним доступ
             self?.someFriends = someFriends
             // коллекция должна прочитать новые данные
-            self?.makeFriendsList()
+           // self?.makeFriendsList()
             self?.setUpSearchBar()
             self?.tableView?.reloadData()
         }
@@ -199,21 +199,21 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
     func setUpSearchBar() {
         friendSearchBar.delegate = self
     }
-}
+
 
 //получение списка друзей
 func getFriendList(completion: @escaping ([User]) -> Void) {
     let baseUrl = "https://api.vk.com"
     let path = "/method/friends.get"
-
     let parameters: Parameters = [
-        "fields": "crop_photo",
+        "fields": "crop_photo,crop",
         "v": "5.52",
         "access_token": Session.instance.token
     ]
 
     let searchUrl = baseUrl + path
 
+    var imageResult = UIImage(named: "default")!
     var some = [User]()
     AF.request(searchUrl,
                method: .get,
@@ -225,9 +225,40 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
 
                 let users = try JSONDecoder().decode(ResultUser.self, from: data)
                 for index in 0..<users.response.count{
+//                    DispatchQueue.main.async {
+//
+//                    if users.response.items[index].crop_photo != nil,
+//                        users.response.items[index].crop_photo?.photo.photo_807 != nil {
+//                    if let imageURL  = users.response.items[index].crop_photo!.photo.photo_807 {
+//                        let data = try? Data(contentsOf: imageURL)
+//                        if data != nil {
+//                            print(index)
+//                            let image = UIImage(data: data!)
+//                                imageResult = image!
+//                            }
+//                        }
+//                        }
+//                    }
                     let firstAndLast = "\(users.response.items[index].first_name) \(users.response.items[index].last_name)"
 
-                    some.append(User(name: firstAndLast, image: UIImage(named: "default")!))
+                    some.append(User(name: firstAndLast, image: imageResult))
+//                    DispatchQueue.global().async{
+//
+//                        if users.response.items[index].crop_photo != nil,
+//                            users.response.items[index].crop_photo?.photo.photo_807 != nil {
+//                        if let imageURL  = users.response.items[index].crop_photo!.photo.photo_807 {
+//                            let data = try? Data(contentsOf: imageURL)
+//                            if data != nil {
+//                                print(1)
+//                                let image = UIImage(data: data!)
+//                                    imageResult = image!
+//                                completion(some)
+//
+//                            }
+//                            }
+//                        }
+//                    }
+                 //   print(users.response.items)
                     completion(some)
                 }
             } catch {
@@ -235,3 +266,17 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
             }
     }
 }
+}
+//extension AllFriendsTableViewController {
+//    func load(url: URL) {
+//        DispatchQueue.global().async { [weak self] in
+//            if let data = try? Data(contentsOf: url) {
+//                 let image = UIImage(data: data) //{
+////                    DispatchQueue.main.async {
+////                        self?.image = image
+////                    }
+//                //}
+//            }
+//        }
+//    }
+//}

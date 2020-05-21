@@ -19,6 +19,16 @@ struct ResponseUser: Codable {
 struct ItemsUser: Codable {
     let first_name: String
     let last_name: String
+    let crop_photo: CropPhoto?
+}
+
+struct CropPhoto: Codable {
+   let photo: Photo
+}
+
+struct Photo: Codable {
+    let photo_807: URL?
+   // let id: Int
 }
 
 struct ResultGroup: Codable {
