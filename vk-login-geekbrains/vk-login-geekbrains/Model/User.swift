@@ -21,9 +21,4 @@ class User: Object {
         self.name = ""
        // fatalError("init() has not been implemented")
     }
-    //
-//    required init() {
-//        super.init()
-//    //    fatalError("init() has not been implemented")
-//    }
 }

@@ -101,38 +101,39 @@ class AllFriendsTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if let indexPath = tableView.indexPathForSelectedRow {
-
-            if searching {
-                guard let friend = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else {
-                    preconditionFailure("Fail")
-                }
-                let destinationViewController = segue.destination as? OneFriendCollectionViewController
-                destinationViewController?.friendContent = content
-                destinationViewController?.friendName = friend.name
-
-                if UIImage(named: friend.name) != nil {
-                    destinationViewController?.friendImage = UIImage(named: friend.name)
-                } else {
-                    destinationViewController?.friendImage = friend.image
-                }
-
-            } else {
-                guard let friend = dictFriends[friendsNamesFirstLetter[indexPath.section]]?[indexPath.row] else {
-                    preconditionFailure("Fail")
-                }
-                let destinationViewController = segue.destination as? OneFriendCollectionViewController
-                destinationViewController?.friendContent = content
-                destinationViewController?.friendName = friend.name
-
-                if UIImage(named: friend.name) != nil {
-                    destinationViewController?.friendImage = UIImage(named: friend.name)
-                } else {
-                    destinationViewController?.friendImage = friend.image
-                }
-            }
-        }
+//
+//        if let indexPath = tableView.indexPathForSelectedRow {
+//
+//            if searching {
+//                guard let friend = searchFriendDict[String(friendSearch[indexPath.section].first!)]?[indexPath.row] else {
+//                    preconditionFailure("Fail")
+//                }
+//                let destinationViewController = segue.destination as? OneFriendCollectionViewController
+//                destinationViewController?.friendContent = content
+//                destinationViewController?.friendName = friend.name
+//
+//                if UIImage(named: friend.name) != nil {
+//                    destinationViewController?.friendImage = UIImage(named: friend.name)
+//                } else {
+//                    destinationViewController?.friendImage = friend.image
+//                }
+//
+//            } else {
+//                guard let friend = dictFriends[friendsNamesFirstLetter[indexPath.section]]?[indexPath.row] else {
+//                    preconditionFailure("Fail")
+//                }
+//                let destinationViewController = segue.destination as? OneFriendCollectionViewController
+//                destinationViewController?.friendContent = content
+//                destinationViewController?.friendName = friend.name
+//
+//                if UIImage(named: friend.name) != nil {
+//                    destinationViewController?.friendImage = UIImage(named: friend.name)
+//                } else {
+//                    destinationViewController?.friendImage = friend.image
+//                }
+//            }
+//        }
+        
     }
 }
 
@@ -253,22 +254,15 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
 }
 
     //сохранение данных пользователя в Realm
-        func saveUserData(_ users: [User]) {
-    // обработка исключений при работе с хранилищем
+    func saveUserData(_ users: [User]) {
             do {
-    // получаем доступ к хранилищу
                 let realm = try Realm()
-    // начинаем изменять хранилище
                 realm.beginWrite()
-    // кладем все объекты класса пользователей в хранилище
-            realm.add(users)
-    // завершаем изменения хранилища
+                realm.add(users)
                 try realm.commitWrite()
             } catch {
-    // если произошла ошибка, выводим ее в консоль
                 print(error)
-            }
         }
-
+    }
 }
 

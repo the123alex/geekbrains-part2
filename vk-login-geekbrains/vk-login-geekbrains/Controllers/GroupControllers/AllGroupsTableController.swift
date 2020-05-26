@@ -6,6 +6,7 @@
 //  Copyright © 2020 Aleksey Mikhlev. All rights reserved.
 //
 import Alamofire
+import RealmSwift
 import UIKit
 
 class AllGroupsTableController: UITableViewController {
@@ -107,10 +108,23 @@ func getGroupsList(completion: @escaping ([Group]) -> Void) {
                     let firstAndLast = groups.response.items[index].name
 
                     some.append(Group(title: firstAndLast, image: UIImage(named: "default")!))
+                    saveGroupData(some)
                     completion(some)
                 }
             } catch {
                 print(error)
             }
     }
+    //сохранение данных групп в Realm
+    func saveGroupData(_ groups: [Group]) {
+            do {
+                let realm = try Realm()
+                realm.beginWrite()
+                realm.add(groups)
+                try realm.commitWrite()
+            } catch {
+                print(error)
+        }
+    }
+
 }

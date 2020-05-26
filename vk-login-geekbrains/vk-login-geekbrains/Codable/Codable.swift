@@ -21,12 +21,12 @@ struct ResponseUser: Codable {
 class ItemsUser: Object, Codable {
     @objc dynamic var first_name: String = ""
     @objc dynamic var last_name: String = ""
- //   @objc dynamic var crop_photo: CropPhoto?
+    var crop_photo: CropPhoto?
 
     init(first_name: String, last_name: String) {
         self.first_name = first_name
         self.last_name = last_name
-    //    self.crop_photo = crop_photo
+      //  self.crop_photo = crop_photo
     }
 
     override required init() {
@@ -39,13 +39,7 @@ class CropPhoto: Object, Codable {
 }
 
 class Photo: Object, Codable {
-   // @objc dynamic var photo_807: URL?
-    override class func ignoredProperties() -> [String] {
-        return ["URL"]
-    }
-
-
-   // let id: Int
+    var photo_807: URL?
 }
 
 struct ResultGroup: Codable {
@@ -57,6 +51,6 @@ struct ResponseGroup: Codable {
     let items: [ItemsGroup]
 }
 
-struct ItemsGroup: Codable {
-    let name: String
+class ItemsGroup: Object, Codable {
+    @objc dynamic var name: String = ""
 }
