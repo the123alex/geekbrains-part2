@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RealmSwift
+
 struct ResultUser: Codable {
    let response: ResponseUser
 }
@@ -16,18 +18,33 @@ struct ResponseUser: Codable {
     let items: [ItemsUser]
 }
 
-struct ItemsUser: Codable {
-    let first_name: String
-    let last_name: String
-    let crop_photo: CropPhoto?
+class ItemsUser: Object, Codable {
+    @objc dynamic var first_name: String = ""
+    @objc dynamic var last_name: String = ""
+ //   @objc dynamic var crop_photo: CropPhoto?
+
+    init(first_name: String, last_name: String) {
+        self.first_name = first_name
+        self.last_name = last_name
+    //    self.crop_photo = crop_photo
+    }
+
+    override required init() {
+      //  fatalError("init() has not been implemented")
+    }
 }
 
-struct CropPhoto: Codable {
-   let photo: Photo
+class CropPhoto: Object, Codable {
+  // @objc dynamic var photo: Photo
 }
 
-struct Photo: Codable {
-    let photo_807: URL?
+class Photo: Object, Codable {
+   // @objc dynamic var photo_807: URL?
+    override class func ignoredProperties() -> [String] {
+        return ["URL"]
+    }
+
+
    // let id: Int
 }
 

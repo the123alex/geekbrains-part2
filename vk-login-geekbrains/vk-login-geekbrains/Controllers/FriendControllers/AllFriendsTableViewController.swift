@@ -6,6 +6,7 @@
 //  Copyright © 2020 Aleksey Mikhlev. All rights reserved.
 //
 import Alamofire
+import RealmSwift
 import UIKit
 
 class AllFriendsTableViewController: UITableViewController {
@@ -24,6 +25,7 @@ class AllFriendsTableViewController: UITableViewController {
 
     var emptyResult = false
     var searching = false
+    var some = [User]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -214,7 +216,6 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
     let searchUrl = baseUrl + path
 
     var imageResult = UIImage(named: "default")!
-    var some = [User]()
     AF.request(searchUrl,
                method: .get,
                parameters: parameters
@@ -241,42 +242,33 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
 //                    }
                     let firstAndLast = "\(users.response.items[index].first_name) \(users.response.items[index].last_name)"
 
-                    some.append(User(name: firstAndLast, image: imageResult))
-//                    DispatchQueue.global().async{
-//
-//                        if users.response.items[index].crop_photo != nil,
-//                            users.response.items[index].crop_photo?.photo.photo_807 != nil {
-//                        if let imageURL  = users.response.items[index].crop_photo!.photo.photo_807 {
-//                            let data = try? Data(contentsOf: imageURL)
-//                            if data != nil {
-//                                print(1)
-//                                let image = UIImage(data: data!)
-//                                    imageResult = image!
-//                                completion(some)
-//
-//                            }
-//                            }
-//                        }
-//                    }
-                 //   print(users.response.items)
-                    completion(some)
+                    self.some.append(User.init(name: firstAndLast))
+                    self.saveUserData(self.some)
+                    completion(self.some)
                 }
             } catch {
                 print(error)
             }
     }
 }
+
+    //сохранение данных пользователя в Realm
+        func saveUserData(_ users: [User]) {
+    // обработка исключений при работе с хранилищем
+            do {
+    // получаем доступ к хранилищу
+                let realm = try Realm()
+    // начинаем изменять хранилище
+                realm.beginWrite()
+    // кладем все объекты класса пользователей в хранилище
+            realm.add(users)
+    // завершаем изменения хранилища
+                try realm.commitWrite()
+            } catch {
+    // если произошла ошибка, выводим ее в консоль
+                print(error)
+            }
+        }
+
 }
-//extension AllFriendsTableViewController {
-//    func load(url: URL) {
-//        DispatchQueue.global().async { [weak self] in
-//            if let data = try? Data(contentsOf: url) {
-//                 let image = UIImage(data: data) //{
-////                    DispatchQueue.main.async {
-////                        self?.image = image
-////                    }
-//                //}
-//            }
-//        }
-//    }
-//}
+
