@@ -23,10 +23,10 @@ class ItemsUser: Object, Codable {
     @objc dynamic var last_name: String = ""
     var crop_photo: CropPhoto?
 
-    init(first_name: String, last_name: String) {
+    init(first_name: String, last_name: String, crop_photo: CropPhoto) {
         self.first_name = first_name
         self.last_name = last_name
-      //  self.crop_photo = crop_photo
+        self.crop_photo = crop_photo
     }
 
     override required init() {
@@ -35,11 +35,15 @@ class ItemsUser: Object, Codable {
 }
 
 class CropPhoto: Object, Codable {
-  // @objc dynamic var photo: Photo
+  var photo: Photo?
 }
 
 class Photo: Object, Codable {
     var photo_807: URL?
+    @objc dynamic var photoName: String {
+        let result = String("\(photo_807)")
+        return result
+    }
 }
 
 struct ResultGroup: Codable {

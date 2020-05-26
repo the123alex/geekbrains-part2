@@ -26,6 +26,7 @@ class AllFriendsTableViewController: UITableViewController {
     var emptyResult = false
     var searching = false
     var some = [User]()
+    var imageResult = UIImage(named: "default")!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -216,7 +217,6 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
 
     let searchUrl = baseUrl + path
 
-    var imageResult = UIImage(named: "default")!
     AF.request(searchUrl,
                method: .get,
                parameters: parameters
@@ -227,6 +227,7 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
 
                 let users = try JSONDecoder().decode(ResultUser.self, from: data)
                 for index in 0..<users.response.count{
+
 //                    DispatchQueue.main.async {
 //
 //                    if users.response.items[index].crop_photo != nil,
@@ -240,6 +241,9 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
 //                            }
 //                        }
 //                        }
+//                    }
+//                    DispatchQueue.main.async {
+//                        self.imageResult
 //                    }
                     let firstAndLast = "\(users.response.items[index].first_name) \(users.response.items[index].last_name)"
 
