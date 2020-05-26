@@ -226,25 +226,25 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
                 print(response)
 
                 let users = try JSONDecoder().decode(ResultUser.self, from: data)
+                let userPhoto = users
                 for index in 0..<users.response.count{
 
-//                    DispatchQueue.main.async {
-//
-//                    if users.response.items[index].crop_photo != nil,
-//                        users.response.items[index].crop_photo?.photo.photo_807 != nil {
-//                    if let imageURL  = users.response.items[index].crop_photo!.photo.photo_807 {
-//                        let data = try? Data(contentsOf: imageURL)
-//                        if data != nil {
-//                            print(index)
-//                            let image = UIImage(data: data!)
-//                                imageResult = image!
-//                            }
-//                        }
-//                        }
-//                    }
-//                    DispatchQueue.main.async {
-//                        self.imageResult
-//                    }
+                    DispatchQueue.global(qos: .background).async {
+
+                        if userPhoto.response.items[index].crop_photo != nil,
+                            userPhoto.response.items[index].crop_photo?.photo!.photo_807 != nil {
+                            if let imageURL  = userPhoto.response.items[index].crop_photo!.photo!.photo_807 {
+                                let data = try? Data(contentsOf: imageURL)
+                                if data != nil {
+                                    print(index)
+                                    let image = UIImage(data: data!)
+                                    self.imageResult = image!
+                                    self.some[index].image = image
+                                }
+                            }
+                        }
+                    }
+                    
                     let firstAndLast = "\(users.response.items[index].first_name) \(users.response.items[index].last_name)"
 
                     self.some.append(User.init(name: firstAndLast))
