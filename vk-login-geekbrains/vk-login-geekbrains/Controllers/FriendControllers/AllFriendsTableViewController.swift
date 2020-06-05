@@ -11,7 +11,10 @@ import UIKit
 
 class AllFriendsTableViewController: UITableViewController {
     @IBOutlet weak var friendSearchBar: UISearchBar!
-    var someFriends = [User]()
+    var someFriends: Results<ItemsUser>?
+    var token: NotificationToken?
+
+    //var someFriends = [User]()
 
     var content: Content = Content(images: [:], likes: [:])
     var filteredFriends = [User]()
@@ -30,38 +33,11 @@ class AllFriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
-        getFriendList() { [weak self]  in
-            // сохраняем полученные данные в массиве, чтобы коллекция могла получить к ним доступ
-           // self?.someFriends = someFriends
-            // коллекция должна прочитать новые данные
-           // self?.makeFriendsList()
-            self?.loadData()
-            self?.setUpSearchBar()
-            self?.tableView?.reloadData()
-        }
+        pairTableAndRealm()
+        //loadData()
+        getFriendList()
 
         navigationItem.title = "Friends of \(Session.instance.token), id: \(Session.instance.id)"
-
-        content.images.updateValue(["max", "max2", "max3" ], forKey: "Max")
-        content.images.updateValue(["boris1", "boris2"], forKey: "Boris")
-        content.images.updateValue(
-            ["red1", "red2", "red3", "red4", "red5", "red6" ],
-            forKey: "Anna"
-        )
-        content.images.updateValue(
-            ["red1", "red2", "red3", "red4", "red5", "red6" ],
-            forKey: "Ivan"
-        )
-        content.images.updateValue(
-            ["red1", "red2", "red3", "red4", "red5", "red6" ],
-            forKey: "Bob"
-        )
-        content.images.updateValue(
-            ["red1", "red2", "red3", "red4", "red5", "red6" ],
-            forKey: "Carl"
-        )
-
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,7 +48,7 @@ class AllFriendsTableViewController: UITableViewController {
         (_ tableView: UITableView,
          numberOfRowsInSection section: Int
     ) -> Int {
-        return someFriends.count
+        return someFriends?.count ?? 0
     }
 
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -87,18 +63,18 @@ class AllFriendsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FriendsTableCell.self), for: indexPath) as? FriendsTableCell else {
             preconditionFailure("Fail")
         }
-         let friends = someFriends[indexPath.row]
+        let friends = someFriends![indexPath.row]
 
-            cell.friendNameCell?.text = friends.name
-            cell.friendImageCell?.image = friends.image
+        cell.friendNameCell?.text = friends.first_name
+           // cell.friendImageCell?.image = UIImage(named: "")
 
             cell.friendImageCell?.asCircle()
             cell.viewForShadow.asCircle()
             cell.viewForShadow?.makeShadow()
 
-            if UIImage(named: friends.name) != nil {
-                cell.friendImageCell.image = UIImage(named: friends.name)
-        }
+//            if UIImage(named: friends.name) != nil {
+//                cell.friendImageCell.image = UIImage(named: friends.name)
+//        }
         return cell
     }
 
@@ -142,17 +118,17 @@ class AllFriendsTableViewController: UITableViewController {
 //Создание списка друзей
 extension AllFriendsTableViewController {
     private func makeFriendsList() {
-        for element in someFriends {
-            friendsNames.append(element.name)
-            friendsNamesFirstLetter.append(String(element.name.first!))
-
-            guard dictFriends[String(element.name.first!)] == nil else {
-                dictFriends[String(element.name.first!)]?.append(element)
-                continue
-            }
-            dictFriends.updateValue([element], forKey: String(element.name.first!))
-        }
-        friendsNamesFirstLetter = Array(Set(friendsNamesFirstLetter)).sorted()
+//        for element in someFriends {
+//            friendsNames.append(element.name)
+//            friendsNamesFirstLetter.append(String(element.name.first!))
+//
+//            guard dictFriends[String(element.name.first!)] == nil else {
+//                dictFriends[String(element.name.first!)]?.append(element)
+//                continue
+//            }
+//            dictFriends.updateValue([element], forKey: String(element.name.first!))
+//        }
+//        friendsNamesFirstLetter = Array(Set(friendsNamesFirstLetter)).sorted()
     }
 }
 
@@ -207,7 +183,7 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
 
 
 //получение списка друзей
-func getFriendList(completion: @escaping () -> Void) {
+func getFriendList() {
     let baseUrl = "https://api.vk.com"
     let path = "/method/friends.get"
     let parameters: Parameters = [
@@ -237,7 +213,7 @@ func getFriendList(completion: @escaping () -> Void) {
                             if let imageURL  = userPhoto.response.items[index].crop_photo!.photo!.photo_807 {
                                 let data = try? Data(contentsOf: imageURL)
                                 if data != nil {
-                                    print(index)
+                                    //print(index)
                                     let image = UIImage(data: data!)
                                     self.imageResult = image!
                                     //self.some[index].image = image
@@ -245,18 +221,8 @@ func getFriendList(completion: @escaping () -> Void) {
                             }
                         }
                     }
-                    
-                    let firstAndLast = "\(users.response.items[index].first_name) \(users.response.items[index].last_name)"
-                    self.saveUserData(users.response.items)
-                    
-//                    self.saveUserData(
-//                        [
-//                            ItemsUser(
-//                                first_name: users.response.items[index].first_name,
-//                                last_name: users.response.items[index].last_name,
-//                                crop_photo: nil),
-//                            id: users.response.items[index].id])
-                    completion()
+
+                    self.saveUserData(users.response.items, index: index)
                 }
             } catch {
                 print(error)
@@ -265,35 +231,72 @@ func getFriendList(completion: @escaping () -> Void) {
 }
 
     //сохранение данных пользователя в Realm
-    func saveUserData(_ users: [ItemsUser]) {
+    func saveUserData(_ users: [ItemsUser], index: Int) {
             do {
 
+                print(users)
                 let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
                 let realm = try Realm(configuration: config)
-                let test = realm.object(ofType: ItemsUser.self, forPrimaryKey: users.first!.id)
+                print(realm.configuration.fileURL)
+//                guard let test = realm.object(ofType: ItemsUser.self, forPrimaryKey: users[index].id) else {
+//                    return
+//                }
+
+                let test1 = realm.objects(ItemsUser.self)
+               // print(realm.objects(ItemsUser.self).first!.first_name)
+                //let test = realm.object(ofType: ItemsUser.self, forPrimaryKey: users.first!.id)
                 realm.beginWrite()
-                if test != nil {
-                    realm.add(test!, update: .modified)
-                } else {
-                    realm.add(users)
-                }
+                //if test != nil {
+                //realm.delete(test1)
+                realm.add(users, update: .modified)
+                //    realm.add(users, update: .modified)
+                //} else {
+                  //  realm.add(users)
+                //i}
 
                 try realm.commitWrite()
             } catch {
                 print(error)
         }
     }
-    func loadData() {
-        do {
-            let realm = try? Realm()
-            let users = realm!.objects(ItemsUser.self)
-            for element in Array(users) {
-                self.someFriends.append(User(name: element.first_name + " " + element.last_name))
-            }
-            tableView.reloadData()
-        } catch {
-            print(error)
-        }
-    }
-}
+//    func loadData() {
+//        do {
+//            let realm = try? Realm()
+//            let users = realm!.objects(ItemsUser.self)
+////            for element in Array(users) {
+////               // self.someFriends.append(User(name: element.first_name + " " + element.last_name))
+////            }
+//            tableView.reloadData()
+//        } catch {
+//            print(error)
+//        }
+//    }
 
+    func pairTableAndRealm() {
+            guard let realm = try? Realm() else { return }
+        print(realm.configuration.fileURL)
+            someFriends = realm.objects(ItemsUser.self)
+            token = someFriends!.observe { [weak self] (changes: RealmCollectionChange) in
+                guard let tableView = self?.tableView else { return }
+                switch changes {
+                case .initial:
+                    tableView.reloadData()
+                case .update(let dataUsers, let deletions, let insertions, let modifications):
+                    print(dataUsers.count)
+                    tableView.reloadData()
+//                    tableView.beginUpdates()
+//
+//                    tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+//                                         with: .automatic)
+//                    tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+//                                         with: .automatic)
+//                    tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+//                                         with: .automatic)
+//
+//                    tableView.endUpdates()
+                case .error(let error):
+                    fatalError("\(error)")
+                }
+            }
+        }
+}

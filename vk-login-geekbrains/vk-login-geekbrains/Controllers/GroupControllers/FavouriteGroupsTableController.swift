@@ -28,12 +28,12 @@ class FavouriteGroupsTableController: UITableViewController {
                         myGroupsTitles.append(group.title)
                     }
                 } else {
-                    let group = allGroupsController.allGroups[indexPath.row]
+                 //   let group = allGroupsController.allGroups[indexPath.row]
                     // Проверяем, что такой группы нет в списке
-                    if !myGroupsTitles.contains(group.title) {
-                        myGroups.append(group)
-                        myGroupsTitles.append(group.title)
-                    }
+//                    if !myGroupsTitles.contains(group.title) {
+//                        myGroups.append(group)
+//                        myGroupsTitles.append(group.title)
+//                    }
                 }
             }
             tableView.reloadData()

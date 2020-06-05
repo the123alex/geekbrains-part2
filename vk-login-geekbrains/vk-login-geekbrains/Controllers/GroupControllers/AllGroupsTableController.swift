@@ -13,7 +13,8 @@ class AllGroupsTableController: UITableViewController {
 
     @IBOutlet weak var groupSearch: UISearchBar!
 
-    var allGroups = [Group]()
+    var allGroups: Results<ItemsGroup>?
+    var token: NotificationToken?
 
     var filteredGroups = [Group]()
     var searching = false
@@ -21,13 +22,9 @@ class AllGroupsTableController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getGroupsList()
 
-        getGroupsList() { [weak self] allGroups in
-            // сохраняем полученные данные в массиве, чтобы коллекция могла получить к ним доступ
-            self?.allGroups = allGroups
-            // коллекция должна прочитать новые данные
-            self?.tableView?.reloadData()
-        }
+        pairTableAndRealm()
     }
 
     // MARK: - Table view data source
@@ -39,7 +36,7 @@ class AllGroupsTableController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-            return allGroups.count
+            return allGroups?.count ?? 0
     }
 
 
@@ -48,7 +45,7 @@ class AllGroupsTableController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: GroupCell.self), for: indexPath) as? GroupCell else {
             preconditionFailure("Fail")
         }
-        cell.groupTitleCell.text = allGroups[indexPath.row].title
+        cell.groupTitleCell.text = allGroups![indexPath.row].name
         return cell
     }
 }
@@ -62,8 +59,6 @@ extension AllGroupsTableController: UISearchBarDelegate {
             tableView.reloadData()
             return
         }
-
-        filteredGroups = allGroups.filter({$0.title.prefix(searchText.count).lowercased() == searchText.lowercased()})
 
         emptyResult = false
         searching = true
@@ -82,49 +77,77 @@ extension AllGroupsTableController: UISearchBarDelegate {
     }
 }
 
-func getGroupsList(completion: @escaping ([Group]) -> Void) {
-    let baseUrl = "https://api.vk.com"
-    let path = "/method/groups.get"
+    func getGroupsList() {
+        let baseUrl = "https://api.vk.com"
+        let path = "/method/groups.get"
 
-    let parameters: Parameters = [
-        "extended": "1",
-        "v": "5.52",
-        "access_token": Session.instance.token
-    ]
+        let parameters: Parameters = [
+            "extended": "1",
+            "v": "5.52",
+            "access_token": Session.instance.token
+        ]
 
-    let searchUrl = baseUrl + path
+        let searchUrl = baseUrl + path
 
-    var some = [Group]()
-    AF.request(searchUrl,
-               method: .get,
-               parameters: parameters
-    ).responseData { response in
+        AF.request(searchUrl,
+                   method: .get,
+                   parameters: parameters
+        ).responseData { response in
             guard let data = response.value else { return }
             do {
                 print(response)
 
                 let groups = try JSONDecoder().decode(ResultGroup.self, from: data)
-                for index in 0..<groups.response.count{
-                    let firstAndLast = groups.response.items[index].name
-
-                    some.append(Group(title: firstAndLast, image: UIImage(named: "default")!))
-                    saveGroupData(some)
-                    completion(some)
-                }
+                saveGroupData(groups.response.items)
             } catch {
                 print(error)
             }
-    }
-    //сохранение данных групп в Realm
-    func saveGroupData(_ groups: [Group]) {
-            do {
-                let realm = try Realm()
-                realm.beginWrite()
-                realm.add(groups)
-                try realm.commitWrite()
-            } catch {
-                print(error)
         }
     }
 
+    func saveGroupData(_ groups: [ItemsGroup]) {
+        do {
+            let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+            let realm = try Realm(configuration: config)
+            let result = realm.objects(ItemsGroup.self)
+
+            realm.beginWrite()
+            result.forEach { (element) in
+                if !groups.contains(element) {
+                    realm.delete(element)
+                }
+            }
+            realm.add(groups, update: .modified)
+            try realm.commitWrite()
+        } catch {
+            print(error)
+        }
+}
+
+extension AllGroupsTableController {
+    func pairTableAndRealm() {
+        guard let realm = try? Realm() else { return }
+
+        allGroups = realm.objects(ItemsGroup.self)
+        token = allGroups!.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                tableView.beginUpdates()
+
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+
+                tableView.endUpdates()
+            case .error(let error):
+                fatalError("\(error)")
+            }
+        }
+    }
 }
