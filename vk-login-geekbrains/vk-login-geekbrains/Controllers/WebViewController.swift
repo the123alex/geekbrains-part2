@@ -80,9 +80,9 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
         print(Session.instance.token)
 
-        let apiPhotos = "https://api.vk.com/method/photos.getAll?v=5.52&access_token=" + Session.instance.token
+      //  let apiPhotos = "https://api.vk.com/method/photos.getAll?v=5.52&access_token=" + Session.instance.token
 
-        let apiGroups = "https://api.vk.com/method/groups.get?v=5.52&access_token=" + Session.instance.token
+     //   let apiGroups = "https://api.vk.com/method/groups.get?v=5.52&access_token=" + Session.instance.token
 
         searchGroup(title: "Polotno")
 

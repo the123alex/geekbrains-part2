@@ -109,10 +109,10 @@ extension AllGroupsTableController: UISearchBarDelegate {
         do {
             let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
             let realm = try Realm(configuration: config)
-            let result = realm.objects(ItemsGroup.self)
+            let oldGroups = realm.objects(ItemsGroup.self)
 
             realm.beginWrite()
-            result.forEach { (element) in
+            oldGroups.forEach { (element) in
                 if !groups.contains(element) {
                     realm.delete(element)
                 }
