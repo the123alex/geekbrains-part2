@@ -6,19 +6,15 @@
 //  Copyright © 2020 Aleksey Mikhlev. All rights reserved.
 //
 
-import RealmSwift
 import UIKit
 
-class User: Object {
-    @objc dynamic var name: String
+class User {
+    var name: String
+    var id: Int = 0
+
     var image: UIImage?
 
     init(name: String) {
         self.name = name
-    }
-
-    override required init() {
-        self.name = ""
-       // fatalError("init() has not been implemented")
     }
 }

@@ -21,6 +21,8 @@ struct ResponseUser: Codable {
 class ItemsUser: Object, Codable {
     @objc dynamic var first_name: String = ""
     @objc dynamic var last_name: String = ""
+    @objc dynamic var id: Int = 0
+
     var crop_photo: CropPhoto?
 
     init(first_name: String, last_name: String, crop_photo: CropPhoto) {
@@ -31,6 +33,9 @@ class ItemsUser: Object, Codable {
 
     override required init() {
       //  fatalError("init() has not been implemented")
+    }
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }
 

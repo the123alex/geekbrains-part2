@@ -30,12 +30,13 @@ class AllFriendsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        getFriendList() { [weak self] someFriends in
+        loadData()
+        getFriendList() { [weak self]  in
             // сохраняем полученные данные в массиве, чтобы коллекция могла получить к ним доступ
-            self?.someFriends = someFriends
+           // self?.someFriends = someFriends
             // коллекция должна прочитать новые данные
            // self?.makeFriendsList()
+            self?.loadData()
             self?.setUpSearchBar()
             self?.tableView?.reloadData()
         }
@@ -206,7 +207,7 @@ extension AllFriendsTableViewController: UISearchBarDelegate {
 
 
 //получение списка друзей
-func getFriendList(completion: @escaping ([User]) -> Void) {
+func getFriendList(completion: @escaping () -> Void) {
     let baseUrl = "https://api.vk.com"
     let path = "/method/friends.get"
     let parameters: Parameters = [
@@ -239,17 +240,23 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
                                     print(index)
                                     let image = UIImage(data: data!)
                                     self.imageResult = image!
-                                    self.some[index].image = image
+                                    //self.some[index].image = image
                                 }
                             }
                         }
                     }
                     
                     let firstAndLast = "\(users.response.items[index].first_name) \(users.response.items[index].last_name)"
-
-                    self.some.append(User.init(name: firstAndLast))
-                    self.saveUserData(self.some)
-                    completion(self.some)
+                    self.saveUserData(users.response.items)
+                    
+//                    self.saveUserData(
+//                        [
+//                            ItemsUser(
+//                                first_name: users.response.items[index].first_name,
+//                                last_name: users.response.items[index].last_name,
+//                                crop_photo: nil),
+//                            id: users.response.items[index].id])
+                    completion()
                 }
             } catch {
                 print(error)
@@ -258,14 +265,34 @@ func getFriendList(completion: @escaping ([User]) -> Void) {
 }
 
     //сохранение данных пользователя в Realm
-    func saveUserData(_ users: [User]) {
+    func saveUserData(_ users: [ItemsUser]) {
             do {
-                let realm = try Realm()
+
+                let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+                let realm = try Realm(configuration: config)
+                let test = realm.object(ofType: ItemsUser.self, forPrimaryKey: users.first!.id)
                 realm.beginWrite()
-                realm.add(users)
+                if test != nil {
+                    realm.add(test!, update: .modified)
+                } else {
+                    realm.add(users)
+                }
+
                 try realm.commitWrite()
             } catch {
                 print(error)
+        }
+    }
+    func loadData() {
+        do {
+            let realm = try? Realm()
+            let users = realm!.objects(ItemsUser.self)
+            for element in Array(users) {
+                self.someFriends.append(User(name: element.first_name + " " + element.last_name))
+            }
+            tableView.reloadData()
+        } catch {
+            print(error)
         }
     }
 }
