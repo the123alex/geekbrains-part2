@@ -6,6 +6,7 @@ target 'vk-login-geekbrains' do
   use_frameworks!
 	pod 'Alamofire', '~> 5.1'
   pod 'RealmSwift'
+  pod 'Firebase/Database'
   # Pods for vk-login-geekbrains
 
 end

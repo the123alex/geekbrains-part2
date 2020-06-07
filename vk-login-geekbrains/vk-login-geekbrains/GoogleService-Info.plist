@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>716816065661-95o711poftrlohbrf896hbtkhbjlo2ve.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.716816065661-95o711poftrlohbrf896hbtkhbjlo2ve</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBuFqS6ohwXcBvc9Kqewhl5dLlv68vavSg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>716816065661</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Aleksey-Mikhlev.vk-login-geekbrains</string>
+	<key>PROJECT_ID</key>
+	<string>vklogin-995f1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>vklogin-995f1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:716816065661:ios:9e20406f9b1468f52bbd14</string>
+	<key>DATABASE_URL</key>
+	<string>https://vklogin-995f1.firebaseio.com</string>
+</dict>
+</plist>
