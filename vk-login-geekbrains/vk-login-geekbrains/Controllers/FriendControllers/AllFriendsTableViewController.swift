@@ -15,7 +15,6 @@ class AllFriendsTableViewController: UITableViewController {
     var someFriends: Results<ItemsUser>?
     var token: NotificationToken?
 
-
     var content: Content = Content(images: [:], likes: [:])
     var filteredFriends = [User]()
 
@@ -36,7 +35,7 @@ class AllFriendsTableViewController: UITableViewController {
         pairTableAndRealm()
         getFriendList()
 
-        navigationItem.title = "Friends of \(Session.instance.token), id: \(Session.instance.id)"
+        //navigationItem.title = "Friends of \(Session.instance.token), id: \(Session.instance.id)"
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

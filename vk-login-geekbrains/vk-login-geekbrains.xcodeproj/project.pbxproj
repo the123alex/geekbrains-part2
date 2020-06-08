@@ -41,6 +41,7 @@
 		C7BC8087243B16A800D65BA3 /* FriendPreviewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC8086243B16A800D65BA3 /* FriendPreviewImage.swift */; };
 		C7BC8089243B182200D65BA3 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC8088243B182200D65BA3 /* ShadowView.swift */; };
 		C7D3083C248D986500231A3C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7D3083B248D986500231A3C /* GoogleService-Info.plist */; };
+		C7D3083E248D9D0B00231A3C /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D3083D248D9D0B00231A3C /* Firebase.swift */; };
 		C7F9103924688CD7009EC298 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9103824688CD7009EC298 /* Session.swift */; };
 		C7F9103B246BEA76009EC298 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9103A246BEA76009EC298 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		C7BC8086243B16A800D65BA3 /* FriendPreviewImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPreviewImage.swift; sourceTree = "<group>"; };
 		C7BC8088243B182200D65BA3 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		C7D3083B248D986500231A3C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C7D3083D248D9D0B00231A3C /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		C7F9103824688CD7009EC298 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		C7F9103A246BEA76009EC298 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -162,6 +164,7 @@
 			children = (
 				C7AA787E24767E210060DE4C /* Codable */,
 				C76BCB0F2433327E00492952 /* AppDelegate.swift */,
+				C7D3083D248D9D0B00231A3C /* Firebase.swift */,
 				C76BCB112433327E00492952 /* SceneDelegate.swift */,
 				C76BCB152433327E00492952 /* Main.storyboard */,
 				C7F9103724688C96009EC298 /* Singleton */,
@@ -400,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7F9103924688CD7009EC298 /* Session.swift in Sources */,
+				C7D3083E248D9D0B00231A3C /* Firebase.swift in Sources */,
 				C7BC8087243B16A800D65BA3 /* FriendPreviewImage.swift in Sources */,
 				C79FD5EF2436086B003D5204 /* FriendsTableCell.swift in Sources */,
 				C7679DD6243B40BE00138187 /* LikeControl.swift in Sources */,

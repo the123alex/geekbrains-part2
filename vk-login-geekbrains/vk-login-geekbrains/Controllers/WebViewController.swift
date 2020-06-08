@@ -13,11 +13,15 @@
 //  Copyright © 2020 Aleksey Mikhlev. All rights reserved.
 //
 import Alamofire
+import Firebase
 import UIKit
 import WebKit
 
 class WebViewController: UIViewController, WKNavigationDelegate {
 
+    private var usersID = [FirebaseUser]()
+    private let ref = Database.database().reference(withPath: "usersID")
+    
     @IBOutlet weak var webview: WKWebView!{
         didSet{
             webview.navigationDelegate = self
@@ -73,6 +77,11 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         Session.instance.id = Int(id) ?? 0
 
         Session.instance.token = token
+        let user = FirebaseUser(id: Session.instance.id)
+        let userRef = self.ref.child(String(Session.instance.id))
+        userRef.setValue(user.toAnyObject())
+
+
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "TapBar") as! UITabBarController
         self.present(newViewController, animated: true, completion: nil)
@@ -84,47 +93,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
      //   let apiGroups = "https://api.vk.com/method/groups.get?v=5.52&access_token=" + Session.instance.token
 
-        searchGroup(title: "Polotno")
-
-
         decisionHandler(.cancel)
     }
 }
 
- private func searchGroup(title: String) {
-    let baseUrl = "https://api.vk.com"
-    let path = "/method/groups.search"
-
-    let parameters: Parameters = [
-        "v": "5.52",
-        "q": "Polotno",
-        "access_token": Session.instance.token
-    ]
-
-    let searchUrl = baseUrl + path
-
-    AF.request(
-        searchUrl,
-        method: .get,
-        parameters: parameters
-    ).responseJSON { repsonse in
-      //  print(repsonse.value)
-    }
-}
-
-func showSecondViewController(view: ViewController) {
-//    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//    let secondVC = storyboard.instantiateViewController(identifier: "SecondViewController")
-//    self.shouldPerformSegue(secondVC)
-//    show(secondVC, sender: self)
-   // let viewC = ViewController()
-//   // viewC.loginButtonPressed(AnyObject.self)
-//    WebViewController.prepare()
-//    let nav = NavigationController()
-//    nav.shouldPerformSegue(withIdentifier: "webSegue", sender: AnyObject.self)
-//    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//    let newViewController = storyBoard.instantiateViewController(withIdentifier: "newViewController") as! AllFriendsTableViewController
-//            self.present(newViewController, animated: true, completion: nil)
-//    newViewController.modalPresentationStyle = .fullScreen
-
-}

@@ -6,12 +6,17 @@
 //  Copyright © 2020 Aleksey Mikhlev. All rights reserved.
 //
 import Alamofire
+import Firebase
 import RealmSwift
 import UIKit
 
 class AllGroupsTableController: UITableViewController {
 
     @IBOutlet weak var groupSearch: UISearchBar!
+
+    private let ref = Database.database().reference(withPath: "usersID")
+    var choosedGroups = [String]()
+    var helpGroupList = [String]()
 
     var allGroups: Results<ItemsGroup>?
     var token: NotificationToken?
@@ -48,6 +53,18 @@ class AllGroupsTableController: UITableViewController {
         cell.groupTitleCell.text = allGroups![indexPath.row].name
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+
+        let cityRef = self.ref.child(String(Session.instance.id))
+        
+        if !choosedGroups.contains(helpGroupList[indexPath.row]) {
+                   self.choosedGroups.append(helpGroupList[indexPath.row])
+               }
+        cityRef.updateChildValues([String(describing: "groups") : choosedGroups])
+        //cityRef.updateChildValues(String("groups"): indexPath.row])
+    }
 }
 
 extension AllGroupsTableController: UISearchBarDelegate {
@@ -77,6 +94,9 @@ extension AllGroupsTableController: UISearchBarDelegate {
     }
 }
 
+extension AllGroupsTableController {
+
+
     func getGroupsList() {
         let baseUrl = "https://api.vk.com"
         let path = "/method/groups.get"
@@ -98,7 +118,7 @@ extension AllGroupsTableController: UISearchBarDelegate {
                 print(response)
 
                 let groups = try JSONDecoder().decode(ResultGroup.self, from: data)
-                saveGroupData(groups.response.items)
+                self.saveGroupData(groups.response.items)
             } catch {
                 print(error)
             }
@@ -113,6 +133,7 @@ extension AllGroupsTableController: UISearchBarDelegate {
 
             realm.beginWrite()
             oldGroups.forEach { (element) in
+                self.helpGroupList.append(String(element.id))
                 if !groups.contains(element) {
                     realm.delete(element)
                 }
@@ -122,6 +143,7 @@ extension AllGroupsTableController: UISearchBarDelegate {
         } catch {
             print(error)
         }
+    }
 }
 
 extension AllGroupsTableController {
